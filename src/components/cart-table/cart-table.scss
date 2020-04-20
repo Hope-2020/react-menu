@@ -21,11 +21,19 @@
         border: 1px solid rgba(256,256,256, .2);
         background-color: rgba(0,0,0,.7);
         box-shadow: 0 0 20px rgba(256,256,256, .1);
-        &-title, &-price  {
-            width: 250px;
+        &-title, &-details {
             text-align: center;
             color: #fff;
             font-size: 24px;
+            margin: 10px;
+        }
+        &-details {
+            display: flex;
+            flex-direction: column;
+        }
+        &-ins {
+            font-size: 14px;
+            margin-bottom: 20px;
         }
         &-img {
             height: 125px;
@@ -45,5 +53,22 @@
         border-radius: 100%;
         border: 1px solid #fff;
         cursor: pointer;
+    }
+}
+
+@media (max-width: 1140px) {
+    .cart__item {
+        width: 250px;
+        flex-direction: column;
+
+        &-ins {
+            margin-bottom: 0;
+            margin-right: 10px;
+        }
+    }
+    .cart__item-details {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
     }
 }

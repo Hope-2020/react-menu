@@ -3,7 +3,7 @@ import MenuList from '../menu-list';
 
 const MainPage = () => {
     return (
-        <MenuList/>
+        <MenuList />
     )
 }
 
