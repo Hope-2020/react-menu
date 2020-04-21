@@ -15,11 +15,30 @@ export default class RestoService {
     return await this.getResource('/menu/');
   }
 
-  getItemById = async (id) => {
-    const result = await this.getMenuItems();
+  getOrderNumber = async () => {
+    const response = await this.getResource('/orders/');
+    const orderNumber = response.length + 1;
+    
+    return orderNumber;
+  }
 
-    const item = result.find(elem => elem.id === Number(id));
+  setOrder = async (order) => {
+    const orderNumber = await this.getOrderNumber();
+    const newOrder = {
+      id: orderNumber,
+      order
+    };
+    const bodyForRequest = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      },
+      body: JSON.stringify(newOrder)
+    };
+    const response = await fetch(`${this._apiBaseUrl}/orders`, bodyForRequest);
 
-    return item;
+    if (!response.ok){
+      throw new Error('Server error'); 
+    }
   }
 }

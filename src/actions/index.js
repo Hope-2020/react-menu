@@ -5,15 +5,15 @@ const menuLoaded = (newMenu) => {
   };
 };
 
-const menuRequested = () => {
+const requested = () => {
   return {
-    type: 'MENU_REQUSTED',
+    type: 'REQUSTED',
   };
 };
 
-const menuError = () => {
+const hasError = () => {
   return {
-    type: 'MENU_ERROR',
+    type: 'HAS_ERROR',
   };
 };
 
@@ -31,4 +31,10 @@ const deleteFromCart = (id) => {
   };
 };
 
-export { menuLoaded, menuRequested, menuError, addToCart, deleteFromCart };
+const clearCart = () => {
+  return {
+    type: 'CLEAR_CART',
+  };
+};
+
+export { menuLoaded, requested, hasError, addToCart, deleteFromCart, clearCart };

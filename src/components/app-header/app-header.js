@@ -1,8 +1,10 @@
 import React from 'react';
 import cartIcon from './shopping-cart-solid.svg';
-import './app-header.scss';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
+import './app-header.scss';
 
 const AppHeader = ({ totalPrice }) => {
     return (
@@ -20,6 +22,10 @@ const mapStateToProps = (state) => {
     return {
         totalPrice: state.totalPrice
     };
+};
+
+AppHeader.propTypes = {
+    totalPrice: PropTypes.number.isRequired
 };
 
 export default connect(mapStateToProps, null)(AppHeader);

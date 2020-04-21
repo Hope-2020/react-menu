@@ -8,12 +8,15 @@
         padding: 20px;
         margin-right: 40px;
         margin-bottom: 40px;
+        position: relative;
     }
+
     &__title {
         font-size: 22px;
         margin-bottom: 20px;
         text-align: center;
     }
+
     &__img {
         width: calc(100% + 40px);
         transform: translateX(-20px);
@@ -21,15 +24,23 @@
         object-fit: cover;
         margin-bottom: 20px;
     }
+
     &__category, &__price {
         font-size: 18px;
         font-weight: 300;
         margin-bottom: 10px;
+
         span {
             font-weight: 700;
         }
     }
-    &__btn {
+
+    &__buttons {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__btn, &__link {
         width: 150px;
         height: 40px;
         border: none;
@@ -37,6 +48,60 @@
         border-radius: 4px;
         color: #fff;
         font-size: 16px;
+        outline: none;
+        transition: all 0.5s ease;
         cursor: pointer;
+
+        &:hover {
+            background-color: #066e1c;
+        }
+
+        &:active {
+            transform: scale(0.8);
+        }
+    }
+
+    &__link {
+        display: flex;
+        text-decoration:none;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__category_img {
+        position: absolute;
+        bottom: 70px;
+        right: 20px;
+        width: 55px;
+        height: 55px;
+        background-position: 50%;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+}
+
+.pizza {
+    background-image: url('http://www-static.dreambox.com/wp-content/uploads/2015/02/Prize-Icon-Pizza.png');
+}
+
+.salads {
+    background-image: url('https://images.vexels.com/media/users/3/141142/isolated/preview/d5ce613797b1fd08bdf3e038bfa1d0b2-colorful-salad-cartoon-by-vexels.png')
+}
+
+.meat{
+    background-image: url('https://cdn2.iconfinder.com/data/icons/food-drinks-v3/512/Steak-512.png');
+}
+
+@media (max-width: 500px) {
+    .menu__buttons {
+        flex-direction: column;
+    }
+
+    .menu__btn {
+        margin-bottom: 10px;
+    }
+
+    .menu__category_img {
+        display: none;
     }
 }

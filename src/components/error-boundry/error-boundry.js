@@ -9,11 +9,14 @@ export default class ErrorBoundry extends Component {
     componentDidCatch() {
         this.setState({ error: true })
     }
-    
 
     render() {
        if (this.state.error) {
-           return <Error />
+            return (
+               <div className="item__page">
+                   <Error />
+               </div>
+           )
        }
 
        return this.props.children;
