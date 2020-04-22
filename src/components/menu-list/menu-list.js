@@ -21,7 +21,6 @@ class MenuList extends Component {
               .catch(error => hasError());
         }
     }
-    
 
     render() {
         const { menuItems, isLoading, isError, addToCart } = this.props;

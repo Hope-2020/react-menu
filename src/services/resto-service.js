@@ -18,17 +18,19 @@ export default class RestoService {
   getOrderNumber = async () => {
     const response = await this.getResource('/orders.json');
 
-    const orderNumber = response.length + 1;
-    
+    const orderNumber = Object.values(response).length + 1;
+
     return orderNumber;
   }
 
   setOrder = async (order) => {
     const orderNumber = await this.getOrderNumber();
+
     const newOrder = {
       id: orderNumber,
       order
     };
+
     const bodyForRequest = {
       method: 'POST',
       headers: {
@@ -36,6 +38,7 @@ export default class RestoService {
       },
       body: JSON.stringify(newOrder)
     };
+    
     const response = await fetch(`${this._baseUrl}/orders.json`, bodyForRequest);
 
     if (!response.ok){
