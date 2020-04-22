@@ -1,8 +1,8 @@
 export default class RestoService {
-  _apiBaseUrl = 'http://localhost:3000';
+  _baseUrl = 'https://react-menu-app-e4c8b.firebaseio.com';
 
   getResource = async (url) => {
-    const response = await fetch(`${this._apiBaseUrl}${url}`);
+    const response = await fetch(`${this._baseUrl}${url}`);
 
     if (!response.ok) {
       throw new Error(`Server Error: ${response.status}`);
@@ -12,11 +12,12 @@ export default class RestoService {
   }
 
   getMenuItems = async () => {
-    return await this.getResource('/menu/');
+    return await this.getResource('/menu.json');
   }
 
   getOrderNumber = async () => {
-    const response = await this.getResource('/orders/');
+    const response = await this.getResource('/orders.json');
+
     const orderNumber = response.length + 1;
     
     return orderNumber;
@@ -35,7 +36,7 @@ export default class RestoService {
       },
       body: JSON.stringify(newOrder)
     };
-    const response = await fetch(`${this._apiBaseUrl}/orders`, bodyForRequest);
+    const response = await fetch(`${this._baseUrl}/orders.json`, bodyForRequest);
 
     if (!response.ok){
       throw new Error('Server error'); 

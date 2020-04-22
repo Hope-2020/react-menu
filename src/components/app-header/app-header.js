@@ -9,8 +9,8 @@ import './app-header.scss';
 const AppHeader = ({ totalPrice }) => {
     return (
         <header className="header">
-            <NavLink to='/' className="header__link">Menu</NavLink>
-            <NavLink to='/cart/' className="header__link">
+            <NavLink to='/react-menu-app/' className="header__link">Menu</NavLink>
+            <NavLink to='/react-menu-app/cart/' className="header__link">
                 <img className="header__cart" src={cartIcon} alt="cart"></img>
                 Total: {totalPrice} $
             </NavLink>

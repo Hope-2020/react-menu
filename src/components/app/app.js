@@ -10,9 +10,9 @@ const App = () => {
         <div style={{background: `url(${Background}) center center/cover no-repeat`}} className="app">
             <AppHeader />
             <Switch>
-                <Route path='/' exact component={MainPage} />
-                <Route path='/cart/' exact component={CartPage} />
-                <Route path='/menu/:id' component={ItemPage} />
+                <Route path='/react-menu-app/' exact component={MainPage} />
+                <Route path='/react-menu-app/cart/' exact component={CartPage} />
+                <Route path='/react-menu-app/menu/:id' component={ItemPage} />
             </Switch>
         </div>
     );

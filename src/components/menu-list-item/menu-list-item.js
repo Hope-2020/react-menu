@@ -20,7 +20,7 @@ const MenuListItem = ({ menuItem, onAddToCart }) => {
                     onClick={() => onAddToCart()}>
                     Add to cart
                 </button>
-                <Link to={`/menu/${id}`} className="menu__link">
+                <Link to={`/react-menu-app/menu/${id}`} className="menu__link">
                     View description
                 </Link>
             </div>
