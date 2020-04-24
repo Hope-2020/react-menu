@@ -1,67 +1,79 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import WithRestoService from '../hoc';
 import Spinner from '../spinner';
 import Error from '../error';
-import { menuLoaded, requested, hasError, addToCart } from '../../actions';
+import { menuLoaded, requested, hasError, addToCart } from '../../Redux/actions';
 import PropTypes from 'prop-types';
 
 import './menu-item.scss';
 
-class MenuItem extends Component {
-  componentDidMount() {
-    const { RestoService, menuItems, menuLoaded, requested, hasError } = this.props;
+const MenuItem = (props) => {
+  const { 
+    RestoService, 
+    menuItems, 
+    menuLoaded, 
+    requested, 
+    hasError, 
+    isLoading, 
+    isError, 
+    addToCart 
+  } = props;
 
-    if (!menuItems.length) {
-      requested();
+  const params = useParams();
+  const history = useHistory();
+  const item = menuItems.find(elem => elem.id === Number(params.id));
+  const errorMessage = isError && <Error />;
+  const loader = isLoading && <Spinner />;
 
-      RestoService.getMenuItems()
-        .then(result => menuLoaded(result))
-        .catch(error => hasError());
-    }
-  }
+  const getMenu = () => {
+    requested();
 
+    RestoService.getMenuItems()
+      .then(result => menuLoaded(result))
+      .catch(() => hasError());
+  };
 
-  render() {
-    const { menuItems, isLoading, isError, addToCart, match, history } = this.props;
+  useEffect(() => {
+    !menuItems.length && getMenu();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-    if (isError) {
-      return (
-        <div className="item__page">
-          <Error />
-        </div>
-      );
-    }
-
-    if (isLoading) {
-      return (
-        <div className="item__page">
-          <Spinner />
-        </div>
-      );
-    }
-
-    const item = menuItems.find(elem => elem.id === Number(match.params.id));
-    const { title, url, category, price, description, id } = item;
-
-    return (
-      <div className="item__page">
+  return (
+    <div className="item__page">
+      {errorMessage || loader ||
         <div className="menu__item item__block">
-          <div className="menu__title">{title}</div>
-          <img className="menu__img" src={url} alt={title}></img>
-          <div className="menu__title">{description}</div>
-          <div className="menu__category">Category: <span>{category}</span></div>
-          <div className="menu__price">Price: <span>{price}$</span></div>
-          <span className={`menu__category_img ${category}`}></span>
+          <div className="menu__title">{item.title}</div>
+          <img className="menu__img" src={item.url} alt={item.title}></img>
+          <div className="menu__title">{item.description}</div>
+          <div className="menu__category">Category: <span>{item.category}</span></div>
+          <div className="menu__price">Price: <span>{item.price}$</span></div>
+          <span className={`menu__category_img ${item.category}`}></span>
           <div className="menu__buttons">
-            <button onClick = {() => addToCart(id)} className="menu__btn">Add to cart</button>
-            <button onClick = {() => history.goBack()} className="menu__btn">Back</button>
+            {item.inCart ?
+              <Link 
+                  to='/react-menu-app/cart/' 
+                  className="menu__btn menu__link">
+                  Go to Cart
+              </Link> :
+              <button 
+                  className="menu__btn" 
+                  onClick={() => addToCart(item.id)}>
+                  Add to cart
+              </button>
+            }
+            <button 
+              onClick = {() => history.goBack()} 
+              className="menu__btn menu__link">
+              Back
+            </button>
           </div>
         </div>
-      </div>
-    );
-  };
-}
+      }
+    </div>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {
@@ -78,6 +90,11 @@ const mapDispatchToProps = {
   addToCart 
 };
 
+export default WithRestoService()(connect(
+  mapStateToProps, 
+  mapDispatchToProps
+)(MenuItem));
+
 MenuItem.propTypes = {
   RestoService: PropTypes.object.isRequired,
   menuItems: PropTypes.arrayOf(
@@ -90,8 +107,3 @@ MenuItem.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   isError: PropTypes.bool.isRequired
 };
-
-export default WithRestoService()(connect(
-  mapStateToProps, 
-  mapDispatchToProps
-)(MenuItem));

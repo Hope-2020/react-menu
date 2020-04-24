@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import './menu-list-item.scss';
 
 const MenuListItem = ({ menuItem, onAddToCart }) => {
-    const { title, price, url, category, id } = menuItem;
+    const { title, price, url, category, id, inCart } = menuItem;
 
     return (
         <li className="menu__item">
@@ -15,12 +15,21 @@ const MenuListItem = ({ menuItem, onAddToCart }) => {
             <div className="menu__price">Price: <span>{price}$</span></div>
             <span className={`menu__category_img ${category}`}></span>
             <div className="menu__buttons">
-                <button 
-                    className="menu__btn" 
-                    onClick={() => onAddToCart()}>
-                    Add to cart
-                </button>
-                <Link to={`/react-menu-app/menu/${id}`} className="menu__link">
+                {inCart ? 
+                    <Link 
+                        to='/react-menu-app/cart/' 
+                        className="menu__btn menu__link">
+                        Go to Cart
+                    </Link> :
+                    <button 
+                        className="menu__btn" 
+                        onClick={() => onAddToCart()}>
+                        Add to cart
+                    </button>
+                }
+                <Link 
+                    to={`/react-menu-app/menu/${id}`} 
+                    className="menu__link">
                     View description
                 </Link>
             </div>

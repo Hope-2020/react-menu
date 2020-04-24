@@ -1,9 +1,9 @@
 import React from 'react';
 import MenuItem from '../menu-item';
 
-const ItemPage = ({ match, history }) => {
+const ItemPage = () => {
   return (
-    <MenuItem match={match} history={history} />
+    <MenuItem />
   );
 };
 

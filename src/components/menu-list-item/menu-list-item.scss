@@ -53,7 +53,8 @@
         cursor: pointer;
 
         &:hover {
-            background-color: #066e1c;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+            color: black;
         }
 
         &:active {
@@ -66,6 +67,7 @@
         text-decoration:none;
         justify-content: center;
         align-items: center;
+        background-color: rgb(190, 109, 42);
     }
 
     &__category_img {
