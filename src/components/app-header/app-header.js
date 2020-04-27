@@ -6,17 +6,15 @@ import PropTypes from 'prop-types';
 
 import './app-header.scss';
 
-const AppHeader = ({ totalPrice }) => {
-    return (
-        <header className="header">
-            <NavLink to='/react-menu-app/' className="header__link">Menu</NavLink>
-            <NavLink to='/react-menu-app/cart/' className="header__link">
-                <img className="header__cart" src={cartIcon} alt="cart"></img>
-                Total: {totalPrice} $
-            </NavLink>
-        </header>
-    );
-};
+const AppHeader = ({ totalPrice }) => (
+    <header className="header">
+        <NavLink to='/react-menu-app/' className="header__link">Menu</NavLink>
+        <NavLink to='/react-menu-app/cart/' className="header__link">
+            <img className="header__cart" src={cartIcon} alt="cart"></img>
+            Total: {totalPrice} $
+        </NavLink>
+    </header>
+);
 
 const mapStateToProps = (state) => {
     return {

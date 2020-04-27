@@ -23,6 +23,7 @@
         height: 240px;
         object-fit: cover;
         margin-bottom: 20px;
+        cursor: pointer;
     }
 
     &__category, &__price {
@@ -82,8 +83,26 @@
     }
 }
 
+.menu__item__back {
+    height: 455px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-image: url(https://images.squarespace-cdn.com/content/v1/59b106ffe45a7ce204696078/1506501854071-2X51TFNK3SBVNLXVJE0L/ke17ZwdGBToddI8pDm48kJPlnl0nfkBTumU5q1MmOTB7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QHyNOqBUUEtDDsRWrJLTma7LP-0IZKq105DwdgzdKohjW6O-n0-t5jqrf2Q2ZR76mmxCmPzTPs3ODBm9EKfGF/vega-07.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.menu__description {
+    height: 250px;
+    margin-top: 20px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
 .pizza {
-    background-image: url('http://www-static.dreambox.com/wp-content/uploads/2015/02/Prize-Icon-Pizza.png');
+    background-image: url('https://www-static.dreambox.com/wp-content/uploads/2015/02/Prize-Icon-Pizza.png');
 }
 
 .salads {

@@ -13,6 +13,7 @@ import WithRestoService from '../hoc';
 import Spinner from '../spinner';
 import Error from '../error';
 import PropTypes from 'prop-types';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import './cart-table.scss';
 
@@ -72,48 +73,54 @@ const CartTable = (props) => {
     errorMessage || loader ||
       <>
         <div className="cart__title">Your order:</div>
-        <div className="cart__list">
+        <TransitionGroup className="cart__list">
           {itemsInCart.map(item => {
             const { title, price, url, id, quantity } = item;
 
             return (
-              <div key={id} className="cart__item">
-                <img src={url} className="cart__item-img" alt="Cesar salad"></img>
-                <div className="cart__item-title">{title}</div>
-                <div className="cart__item-details">
-                  <span className="cart__item-ins">Price:</span>
-                  <span>{price} $</span>
-                </div>
-                <div className="cart__item-details">
-                  <span className="cart__item-ins">Quantity:</span>
-                  <span>{quantity}</span>
-                  <div className="cart__buttons">
-                    <button
-                      className="cart__btn"
-                      onClick={() => decreaseInCart(id)}
-                      disabled={quantity <= 1 && true}>
-                      -
-                    </button>
-                    <button
-                      className="cart__btn"
-                      onClick={() => addToCart(id)}>
-                      +
-                    </button>
+              <CSSTransition
+                key={id} 
+                timeout={500}
+                classNames="fade"
+              >
+                <div className="cart__item">
+                  <img src={url} className="cart__item-img" alt="Cesar salad"></img>
+                  <div className="cart__item-title">{title}</div>
+                  <div className="cart__item-details">
+                    <span className="cart__item-ins">Price:</span>
+                    <span>{price} $</span>
+                  </div>
+                  <div className="cart__item-details">
+                    <span className="cart__item-ins">Quantity:</span>
+                    <span>{quantity}</span>
+                    <div className="cart__buttons">
+                      <button
+                        className="cart__btn"
+                        onClick={() => decreaseInCart(id)}
+                        disabled={quantity <= 1 && true}>
+                        -
+                      </button>
+                      <button
+                        className="cart__btn"
+                        onClick={() => addToCart(id)}>
+                        +
+                      </button>
+                    </div>
+                  </div>
+                  <div className="cart__item-details">
+                    <span className="cart__item-ins">Amount:</span>
+                    <span>{price * quantity} $</span>
+                  </div>
+                  <div 
+                    className="cart__close" 
+                    onClick={() => deleteFromCart(id)}>
+                    &times;
                   </div>
                 </div>
-                <div className="cart__item-details">
-                  <span className="cart__item-ins">Amount:</span>
-                  <span>{price * quantity} $</span>
-                </div>
-                <div 
-                  className="cart__close" 
-                  onClick={() => deleteFromCart(id)}>
-                  &times;
-                </div>
-              </div>
+              </CSSTransition>
             );
           })}
-        </div>
+        </TransitionGroup>
         <button
           className="order__btn"
           onClick={() => onTakeOrder()}>

@@ -6,6 +6,7 @@ import Spinner from '../spinner';
 import Error from '../error';
 import { menuLoaded, requested, hasError, addToCart } from '../../Redux/actions';
 import PropTypes from 'prop-types';
+import { SwitchTransition, CSSTransition } from 'react-transition-group';
 
 import './menu-item.scss';
 
@@ -41,6 +42,7 @@ const MenuItem = (props) => {
   }, []);
 
   return (
+    
     <div className="item__page">
       {errorMessage || loader ||
         <div className="menu__item item__block">
@@ -49,20 +51,28 @@ const MenuItem = (props) => {
           <div className="menu__title">{item.description}</div>
           <div className="menu__category">Category: <span>{item.category}</span></div>
           <div className="menu__price">Price: <span>{item.price}$</span></div>
-          <span className={`menu__category_img ${item.category}`}></span>
+          <span className={`menu__category_img alert ${item.category}`}></span>
           <div className="menu__buttons">
-            {item.inCart ?
-              <Link 
-                  to='/react-menu-app/cart/' 
-                  className="menu__btn menu__link">
-                  Go to Cart
-              </Link> :
-              <button 
-                  className="menu__btn" 
-                  onClick={() => addToCart(item.id)}>
-                  Add to cart
-              </button>
-            }
+            <SwitchTransition>
+              <CSSTransition
+                key={item.inCart}
+                addEndListener={(node, done) => node.addEventListener("transitionend", done, false)}
+                classNames='fade'
+              >
+              {item.inCart ?
+                <Link 
+                    to='/react-menu-app/cart/' 
+                    className="menu__btn menu__link">
+                    Go to Cart
+                </Link> :
+                <button 
+                    className="menu__btn" 
+                    onClick={() => addToCart(item.id)}>
+                    Add to cart
+                </button>
+              }
+              </CSSTransition>
+            </SwitchTransition>
             <button 
               onClick = {() => history.goBack()} 
               className="menu__btn menu__link">
