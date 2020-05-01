@@ -7,7 +7,7 @@ import {
   deleteFromCart, 
   clearCart, 
   addToCart, 
-  decreaseInCart 
+  decreaseInCart
 } from '../../Redux/actions';
 import WithRestoService from '../hoc';
 import Spinner from '../spinner';
@@ -27,7 +27,7 @@ const CartTable = (props) => {
     isOrderTook, 
     deleteFromCart, 
     addToCart, 
-    decreaseInCart, 
+    decreaseInCart,
     isLoading, 
     isError 
   } = props;
@@ -139,11 +139,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default WithRestoService()(connect(
-  mapStateToProps, 
-  { deleteFromCart, addToCart, clearCart, requested, hasError, decreaseInCart }
-)(CartTable));
-
 CartTable.propTypes = {
   RestoService: PropTypes.object.isRequired,
   itemsInCart: PropTypes.arrayOf(
@@ -159,3 +154,8 @@ CartTable.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   isError: PropTypes.bool.isRequired
 };
+
+export default WithRestoService()(connect(
+  mapStateToProps, 
+  { deleteFromCart, addToCart, clearCart, requested, hasError, decreaseInCart }
+)(CartTable));

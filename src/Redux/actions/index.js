@@ -59,5 +59,5 @@ export {
   addToCart, 
   deleteFromCart, 
   clearCart, 
-  decreaseInCart 
+  decreaseInCart
 };

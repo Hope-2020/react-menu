@@ -100,11 +100,6 @@ const mapDispatchToProps = {
   addToCart 
 };
 
-export default WithRestoService()(connect(
-  mapStateToProps, 
-  mapDispatchToProps
-)(MenuItem));
-
 MenuItem.propTypes = {
   RestoService: PropTypes.object.isRequired,
   menuItems: PropTypes.arrayOf(
@@ -117,3 +112,8 @@ MenuItem.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   isError: PropTypes.bool.isRequired
 };
+
+export default WithRestoService()(connect(
+  mapStateToProps, 
+  mapDispatchToProps
+)(MenuItem));

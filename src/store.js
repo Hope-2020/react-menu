@@ -1,6 +1,19 @@
-import { createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
 import reducer from './Redux/reducers';
+import ReduxThunk from 'redux-thunk';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
-const store = createStore(reducer);
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['itemsInCart', 'totalPrice']
+};
 
-export default store;
+const persistedReducer = persistReducer(persistConfig, reducer);
+
+export const store = createStore(persistedReducer,
+  applyMiddleware(ReduxThunk)
+);
+
+export const persistor = persistStore(store);

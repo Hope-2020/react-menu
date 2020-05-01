@@ -11,7 +11,7 @@ import {
 const initialState = {
   menu: [],
   itemsInCart: [],
-  isLoading: true,
+  isLoading: false,
   isError: false,
   isOrderTook: false,
   totalPrice: 0

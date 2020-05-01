@@ -21,5 +21,4 @@ const App = () => (
     </AppBlock>
 );
 
-
 export default App;
