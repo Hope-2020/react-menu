@@ -9,3 +9,9 @@
   width: 50%;
   background-color: rgba(221, 218, 218, 0.8);
 }
+
+@media (max-width: 500px) {
+  .item__block {
+    width: 90%;
+  }
+}

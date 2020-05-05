@@ -9,7 +9,6 @@ const MenuListItem = memo(
     ({ menuItem, onAddToCart }) => {
 
     const { title, price, url, category, id, inCart, description } = menuItem;
-
     const [isFlipped, changeFlipped] = useState(false);
 
     const onClickFlip = () => {
@@ -20,50 +19,60 @@ const MenuListItem = memo(
         <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
             <li className="menu__item">
                 <div className="menu__title">{title}</div>
-                <img className="menu__img" src={url} alt={title} onClick={onClickFlip}></img>
+                <img 
+                    className="menu__img" 
+                    src={url} 
+                    alt={title}
+                    title="click me"
+                    onClick={onClickFlip}>
+                </img>
                 <div className="menu__category">Category: <span>{category}</span></div>
                 <div className="menu__price">Price: <span>{price}$</span></div>
                 <span className={`menu__category_img ${category}`}></span>
                 <div className="menu__buttons">
-                    {inCart ? 
-                        <Link 
+                    {inCart
+                        ? <Link 
                             to='/react-menu-app/cart/' 
                             className="menu__btn menu__link">
-                            Go to Cart
-                        </Link> :
-                        <button 
+                            CART
+                        </Link>
+                        : <button 
                             className="menu__btn" 
                             onClick={() => onAddToCart()}>
-                            Add to cart
+                            ORDER
                         </button>
                     }
                     <Link 
                         to={`/react-menu-app/menu/${id}`} 
                         className="menu__link">
-                        View description
+                        DESCRIPTION
                     </Link>
                 </div>
             </li>
             <li className="menu__item menu__item__back">
                 <div className="menu__title">{title}</div>
-                <div className="menu__description" onClick={onClickFlip}>{description}</div>
+                <div 
+                    className="menu__description" 
+                    onClick={onClickFlip}
+                >
+                    {description}
+                </div>
                 <div className="menu__category">Category: <span>{category}</span></div>
                 <div className="menu__price">Price: <span>{price}$</span></div>
                 <span className={`menu__category_img ${category}`}></span>
                 <div className="menu__buttons">
-                    {inCart ? 
-                        <Link 
+                    {inCart
+                        ? <Link 
                             to='/react-menu-app/cart/' 
                             className="menu__btn menu__link">
-                            Go to Cart
-                        </Link> :
-                        <button 
+                            CART
+                        </Link>
+                        : <button 
                             className="menu__btn" 
                             onClick={() => onAddToCart()}>
-                            Add to cart
+                            ORDER
                         </button>
                     }
-                    
                 </div>
             </li>
         </ReactCardFlip>

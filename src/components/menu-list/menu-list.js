@@ -1,41 +1,28 @@
 import React, { useEffect } from 'react';
-import MenuListItem from '../menu-list-item';
 import { connect } from 'react-redux';
-import WithRestoService from '../hoc';
-import { menuLoaded, requested, hasError, addToCart } from '../../Redux/actions';
+import PropTypes from 'prop-types';
+
+import MenuListItem from '../menu-list-item'; 
 import Spinner from '../spinner';
 import Error from '../error';
-import PropTypes from 'prop-types';
+import { menuLoaded, addToCart } from '../../Redux/actions/menu';
 
 import './menu-list.scss';
 
-const MenuList = (props) => {
-  const { 
-    RestoService, 
-    menuItems, 
-    menuLoaded, 
-    requested, 
-    hasError, 
-    isLoading, 
-    isError, 
-    addToCart 
-  } = props;
+const MenuList = ({
+  menuItems,
+  isLoading,
+  hasError,
+  menuLoaded,
+  addToCart
+}) => {
+  const errorMessage = hasError && <div className="item__page"><Error /></div>;
+  const loader = isLoading && <div className="item__page"><Spinner /></div>;
 
-  const getMenu = () => {
-    requested();
-
-    RestoService.getMenuItems()
-      .then(result => menuLoaded(result))
-      .catch(() => hasError());
-  };
-    
   useEffect(() => {
-    !menuItems.length && getMenu();
+    !menuItems.length && menuLoaded();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const errorMessage = isError && <div className="item__page"><Error /></div>;
-  const loader = isLoading && <div className="item__page"><Spinner /></div>;
 
   return (
     errorMessage || loader ||
@@ -50,36 +37,31 @@ const MenuList = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({menu}) => {
   return {
-    menuItems: state.menu,
-    isLoading: state.isLoading,
-    isError: state.isError
+    menuItems: menu.menu,
+    isLoading: menu.isLoading,
+    hasError: menu.hasError
   };
 };
 
 const mapDispatchToProps = {
   menuLoaded, 
-  requested, 
-  hasError, 
-  addToCart 
+  addToCart
 };
 
 MenuList.propTypes = {
-  RestoService: PropTypes.object.isRequired,
   menuItems: PropTypes.arrayOf(
     PropTypes.object,
   ).isRequired,
-  menuLoaded: PropTypes.func.isRequired,
-  requested: PropTypes.func.isRequired,
-  hasError: PropTypes.func.isRequired,
-  addToCart: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  isError: PropTypes.bool.isRequired
+  hasError: PropTypes.bool.isRequired,
+  menuLoaded: PropTypes.func.isRequired,
+  addToCart: PropTypes.func.isRequired
 };
 
-export default WithRestoService()(connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(MenuList));
+)(MenuList);
 
