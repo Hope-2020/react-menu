@@ -5,6 +5,7 @@ export const PROVIDE_USER = 'PROVIDE_USER';
 export const REGISTRATION = 'REGISTRATION';
 export const IS_ERROR = 'IS_ERROR';
 export const USER_LOGOUT = 'USER_LOGOUT';
+export const REFRESH_ERROR = 'REFRESH_ERROR';
 
 const getUserData =  async (id) => {
   try {
@@ -64,13 +65,19 @@ const login = (value, history) => async dispatch => {
 
     setTimeout(() => {
       history.push("/react-menu-app/dashboard/");
-    }, 3000);
+    }, 2000);
     
   } catch (error) {
     dispatch({
       type: IS_ERROR,
       payload: error.message
     });
+
+    setTimeout(() => {
+      dispatch({
+        type: REFRESH_ERROR
+      });
+    }, 5000);
   }
 };
 
@@ -105,12 +112,18 @@ const signUp = (value, history) => async dispatch=> {
 
     setTimeout(() => {
       history.push("/react-menu-app/dashboard/");
-    }, 3000);
+    }, 2000);
   } catch (error) {
     dispatch({
       type: IS_ERROR,
       payload: error.message
     });
+
+    setTimeout(() => {
+      dispatch({
+        type: REFRESH_ERROR
+      });
+    }, 5000);
   }
 };
 

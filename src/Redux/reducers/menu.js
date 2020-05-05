@@ -5,7 +5,8 @@ import {
   ADD_TO_CART,
   DELETE_FROM_CART,
   DECREASE_IN_CART,
-  ORDER_SUCCESS
+  ORDER_SUCCESS,
+  REFRESH_ORDER
 } from '../actions/menu';
 
 const initialState = {
@@ -27,10 +28,10 @@ const menu = (state = initialState, action) => {
       };
 
     case LOADING:
-    return {
-      ...state,
-      isLoading: true
-    };
+      return {
+        ...state,
+        isLoading: true
+      };
 
     case HAS_ERROR:
       return {
@@ -63,8 +64,7 @@ const menu = (state = initialState, action) => {
         ...state,
         menu: newMenu,
         itemsInCart: [...state.itemsInCart, {...item, quantity: 1}],
-        totalPrice: state.totalPrice + item.price,
-        isOrderTook: false,
+        totalPrice: state.totalPrice + item.price
       };
 
     case DELETE_FROM_CART:
@@ -94,13 +94,19 @@ const menu = (state = initialState, action) => {
     case ORDER_SUCCESS:
       return {
         ...state,
-        menu: state.menu.map(elem => ({...elem, inCart: false})),
-        itemsInCart: [],
         isOrderTook: true,
-        totalPrice: 0,
         isLoading: false
       };
-  
+    
+    case REFRESH_ORDER:
+      return {
+        ...state,
+        menu: state.menu.map(elem => ({...elem, inCart: false})),
+        itemsInCart: [],
+        isOrderTook: false,
+        totalPrice: 0
+      };
+
     default:
       return state;
   }

@@ -2,7 +2,8 @@ import {
   PROVIDE_USER,
   USER_LOGOUT,
   REGISTRATION,
-  IS_ERROR
+  IS_ERROR,
+  REFRESH_ERROR
 } from '../actions/auth';
 
 const initialState = {
@@ -35,6 +36,12 @@ const auth = (state = initialState, action) => {
         isError: true,
         errorMessage: action.payload,
         isRecording: false
+      };
+
+    case REFRESH_ERROR:
+      return {
+        ...state,
+        isError: false
       };
 
     case USER_LOGOUT:

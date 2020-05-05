@@ -84,7 +84,7 @@ input {
 
   &_options-container {
     position: relative;
-    width: 80%;
+    width: 70%;
   }
 
   &_options-text {
@@ -334,6 +334,15 @@ input {
   }
 }
 
+
+@media (max-width: 800px) {
+  .user {
+    &_options-container {
+      width: 95%;
+    }
+  }
+}
+
 @media (max-width: 500px) {
   .user {
     margin-top: -90px;
@@ -346,6 +355,16 @@ input {
     &_options-text {
       flex-direction: column;
 
+    }
+
+    .info-block {
+      width: 60%;
+      padding: 0 10px;
+  
+      p {
+        font-size: 11px;
+        font-weight: normal;
+      }
     }
   }
 
@@ -361,7 +380,7 @@ input {
   }
 
   .user_options-forms {
-    top: -145px;
+    top: -130px;
     left: 50%;
     width: 100%;
   }
