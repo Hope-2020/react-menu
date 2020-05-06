@@ -4,16 +4,21 @@ import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 
-import PrivateRoute from "../private-route/private-route";
-import { MainPage, CartPage, ItemPage, AuthPage } from '../pages';
-import AppHeader from '../app-header';
-import AppFooter from '../app-footer/app-footer';
-import UserTable from '../user-table/user-table';
-import { checkUserIsLogin } from '../../Redux/actions/auth';
+import PrivateRoute from "components/Private-route";
+import { 
+    MainPage, 
+    CartPage, 
+    MenuItemPage,
+    AuthPage,
+    UserDashboardPage
+} from 'Pages';
+import Header from 'components/Header';
+import Footer from 'components/Footer';
+import { checkUserIsLogin } from 'Redux/actions/auth';
 
 import Background from './food-bg.jpg';
 
-const AppBackground = styled.main`
+const AppBackground = styled.div`
     background: url(${Background}) center center/cover no-repeat;
 `;
 
@@ -21,19 +26,20 @@ const App = ({ checkUserIsLogin }) => {
     useEffect(() => {
         checkUserIsLogin();
     
-    }, [checkUserIsLogin]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <AppBackground>
-            <AppHeader />
+            <Header />
             <Switch>
                 <Route path='/react-menu-app/' exact component={MainPage} />
                 <Route path='/react-menu-app/cart/' exact component={CartPage} />
-                <Route path='/react-menu-app/menu/:id' component={ItemPage} />
+                <Route path='/react-menu-app/menu/:id' component={MenuItemPage} />
                 <Route path='/react-menu-app/authorization/' exact component={AuthPage} />
-                <PrivateRoute exact path='/react-menu-app/dashboard/' component={UserTable} />
+                <PrivateRoute exact path='/react-menu-app/dashboard/' component={UserDashboardPage} />
             </Switch>
-            <AppFooter />
+            <Footer />
         </AppBackground>
     );
 };

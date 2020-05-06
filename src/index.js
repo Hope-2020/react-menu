@@ -5,8 +5,8 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { store, persistor } from './Redux/store';
 
-import App from './components/app';
-import ErrorBoundry from './components/error-boundry';
+import App from './components/App';
+import ErrorBoundry from './components/Error-boundry';
 
 import './index.scss';
 

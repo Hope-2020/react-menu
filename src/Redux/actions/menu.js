@@ -1,4 +1,4 @@
-import apiCall from '../helpers/api-call';
+import apiCall from 'helpers/api-call';
 
 export const MENU_LOADED = 'MENU_LOADED';
 export const LOADING = 'LOADING';

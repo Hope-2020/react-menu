@@ -3,22 +3,24 @@ import { Route, Redirect } from "react-router-dom";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'
 
-const PrivateRoute = ({ component: RouteComponent, isUserLogin, ...rest }) => {
-  return (
-    <Route
-      {...rest}
-      render={routeProps =>
-        isUserLogin ? (
-          <RouteComponent {...routeProps} />
-        ) : (
-          <Redirect to='/react-menu-app/authorization/' />
-        )
-      }
-    />
-  );
-};
+const PrivateRoute = ({ 
+  component: RouteComponent, 
+  isUserLogin, 
+  ...rest 
+}) => (
+  <Route
+    {...rest}
+    render={routeProps =>
+      isUserLogin ? (
+        <RouteComponent {...routeProps} />
+      ) : (
+        <Redirect to='/react-menu-app/authorization/' />
+      )
+    }
+  />
+);
 
-const mapStateToProps = ({auth}) => {
+const mapStateToProps = ({ auth }) => {
   return {
     isUserLogin: auth.isUserLogin
   };

@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 
-import Login from './login';
-import SignUp from './sign-up';
-import Spinner from '../spinner';
-import Error from '../error';
+import { Login, SignUp } from './blocks';
+import Spinner from 'components/Spinner';
+import ErrorMessage from 'components/ErrorMessage';
 
 import './auth.scss';
 
@@ -22,7 +21,7 @@ const Auth = ({
     return cn('user_options-forms', {'bounceLeft': showSignUp, 'bounceRight': !showSignUp});
   }
 
-  const showError = isError && <Error message={errorMessage} />;
+  const showError = isError && <ErrorMessage message={errorMessage} />;
   const loader = isRecording && <Spinner />;
   const successMessage = isUserLogin && <p className="user_success">Success!</p>;
 
@@ -77,7 +76,7 @@ const Auth = ({
   );
 };
 
-const mapStateToProps = ({auth}) => {
+const mapStateToProps = ({ auth }) => {
   return {
     isUserLogin: auth.isUserLogin,
     isRecording: auth.isRecording,

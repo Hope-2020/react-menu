@@ -1,4 +1,4 @@
-import apiCall from '../helpers/api-call';
+import apiCall from 'helpers/api-call';
 import app from "../../firebase";
 
 export const PROVIDE_USER = 'PROVIDE_USER';
