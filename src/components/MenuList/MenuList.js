@@ -6,11 +6,13 @@ import MenuListItem from './MenuListItem';
 import Spinner from 'components/Spinner';
 import ErrorMessage from 'components/ErrorMessage';
 import { menuLoaded, addToCart } from 'Redux/actions/menu';
+import { inCart } from 'helpers/cart';
 
 import './menu-list.scss';
 
 const MenuList = ({
   menuItems,
+  cart,
   isLoading,
   hasError,
   menuLoaded,
@@ -28,22 +30,24 @@ const MenuList = ({
     errorMessage || loader ||
       <ul className="menu__list">
         {menuItems.map(menuItem => {
+          const itemInCart = inCart(cart, menuItem.id);
+
           return <MenuListItem 
             key={menuItem.id} 
-            menuItem={menuItem} 
-            onAddToCart={() => addToCart(menuItem.id)} />
+            menuItem={menuItem}
+            itemInCart={itemInCart}
+            onAddToCart={() => addToCart(menuItem)} />
          })}
       </ul>
   );
 };
 
-const mapStateToProps = ({ menu }) => {
-  return {
-    menuItems: menu.menu,
-    isLoading: menu.isLoading,
-    hasError: menu.hasError
-  };
-};
+const mapStateToProps = ({ menu }) => ({
+  menuItems: menu.menu,
+  cart: menu.itemsInCart,
+  isLoading: menu.isLoading,
+  hasError: menu.hasError
+});
 
 const mapDispatchToProps = {
   menuLoaded, 
@@ -54,6 +58,9 @@ MenuList.propTypes = {
   menuItems: PropTypes.arrayOf(
     PropTypes.object,
   ).isRequired,
+  cart: PropTypes.arrayOf(
+    PropTypes.object,
+  ),
   isLoading: PropTypes.bool.isRequired,
   hasError: PropTypes.bool.isRequired,
   menuLoaded: PropTypes.func.isRequired,

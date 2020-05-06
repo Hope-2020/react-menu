@@ -6,16 +6,17 @@ import {
   DELETE_FROM_CART,
   DECREASE_IN_CART,
   ORDER_SUCCESS,
-  REFRESH_ORDER
+  REFRESH_ORDER 
 } from '../actions/menu';
+
+import { getNewCart } from 'helpers/cart';
 
 const initialState = {
   menu: [],
   itemsInCart: [],
-  isLoading: false,
+  isLoading: true,
   hasError: false,
-  isOrderTook: false,
-  totalPrice: 0
+  isOrderTook: false
 };
 
 const menu = (state = initialState, action) => {
@@ -41,59 +42,27 @@ const menu = (state = initialState, action) => {
       };
 
     case ADD_TO_CART:
-      const isItemInCart = state.itemsInCart.some(elem => elem.id === action.payload);
-
-      if (isItemInCart) {
-        const item = state.itemsInCart.find(elem => elem.id === action.payload);
-        const newItem = {...item, quantity: ++item.quantity};
-        const items = state.itemsInCart.map(elem => elem.id === item.id ? newItem : elem);
-
-        return {
-          ...state,
-          itemsInCart: items,
-          totalPrice: state.totalPrice + newItem.price
-        };
-      }
-
-      const item = state.menu.find(elem => elem.id === action.payload);
-      const newMenu = state.menu.map(
-        elem => elem.id === item.id ? {...elem, inCart: true} : elem
-      );
-
       return {
         ...state,
-        menu: newMenu,
-        itemsInCart: [...state.itemsInCart, {...item, quantity: 1}],
-        totalPrice: state.totalPrice + item.price
+        itemsInCart: getNewCart(state.itemsInCart, action.payload, 'add')
       };
 
     case DELETE_FROM_CART:
-      const itemDelete = state.itemsInCart.find(elem => elem.id === action.payload);
-
       return {
         ...state,
-        menu: state.menu.map(
-          elem => elem.id === itemDelete.id ? {...elem, inCart: false} : elem
-        ),
-        itemsInCart: state.itemsInCart.filter(elem => elem.id !== itemDelete.id),
-        totalPrice: state.totalPrice - (itemDelete.price * itemDelete.quantity)
+        itemsInCart: getNewCart(state.itemsInCart, action.payload, 'del')
       };
 
     case DECREASE_IN_CART:
-      const itemDecr = state.itemsInCart.find(elem => elem.id === action.payload);
-      const newItemDecr = {...itemDecr, quantity: --itemDecr.quantity};
-    
       return {
         ...state,
-        itemsInCart: state.itemsInCart.map(
-          elem => elem.id === itemDecr.id ? newItemDecr : elem
-        ),
-        totalPrice: state.totalPrice - newItemDecr.price
+        itemsInCart: getNewCart(state.itemsInCart, action.payload, 'decr')
       };
       
     case ORDER_SUCCESS:
       return {
         ...state,
+        itemsInCart: [],
         isOrderTook: true,
         isLoading: false
       };
@@ -101,10 +70,7 @@ const menu = (state = initialState, action) => {
     case REFRESH_ORDER:
       return {
         ...state,
-        menu: state.menu.map(elem => ({...elem, inCart: false})),
-        itemsInCart: [],
         isOrderTook: false,
-        totalPrice: 0
       };
 
     default:

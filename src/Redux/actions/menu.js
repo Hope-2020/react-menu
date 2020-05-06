@@ -10,9 +10,7 @@ export const ORDER_SUCCESS = 'ORDER_SUCCESS';
 export const REFRESH_ORDER = 'REFRESH_ORDER';
 
 const menuLoaded = () => async dispatch => {
-  dispatch({
-    type: LOADING,
-  });
+  dispatch({ type: LOADING });
 
   try {
     const { data } = await apiCall('/menu.json');
@@ -26,16 +24,12 @@ const menuLoaded = () => async dispatch => {
       payload
     });
   } catch (error) {
-    dispatch({
-      type: HAS_ERROR,
-    });
+    dispatch({ type: HAS_ERROR });
   }
 };
 
 const sendOrder = (order, history) => async dispatch => {
-  dispatch({
-    type: LOADING
-  });
+  dispatch({ type: LOADING });
 
   try {
     const { data } = await apiCall('/orders.json');
@@ -47,45 +41,34 @@ const sendOrder = (order, history) => async dispatch => {
     const responce = await apiCall('/orders.json', 'POST', newOrder);
 
     if (responce.status === 200) {
-      dispatch({
-        type: ORDER_SUCCESS
-      });
+      dispatch({ type: ORDER_SUCCESS });
 
       setTimeout(() => {
         history.push("/react-menu-app/");
 
-        dispatch({
-          type: REFRESH_ORDER
-        });
+        dispatch({ type: REFRESH_ORDER });
       }, 5000);
     }
   } catch (error) {
-    dispatch({
-      type: HAS_ERROR
-    });
+    dispatch({ type: HAS_ERROR });
   }
 }
 
-const addToCart = (id) => {
-  return {
-    type: ADD_TO_CART,
-    payload: id
-  };
-};
+const addToCart = item => ({
+  type: ADD_TO_CART,
+  payload: item
 
-const deleteFromCart = (id) => {
-  return {
-    type: DELETE_FROM_CART,
-    payload: id
-  };
-};
+});
 
-const decreaseInCart = (id) => {
-  return {
-    type: DECREASE_IN_CART,
-    payload: id
-  };
-};
+const deleteFromCart = item => ({
+  type: DELETE_FROM_CART,
+  payload: item
+});
+
+const decreaseInCart = item => ({
+  type: DECREASE_IN_CART,
+  payload: item
+});
 
 export {
   menuLoaded,

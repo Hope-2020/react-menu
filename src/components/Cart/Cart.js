@@ -12,6 +12,7 @@ import {
 } from 'Redux/actions/menu';
 import Spinner from 'components/Spinner';
 import ErrorMessage from 'components/ErrorMessage';
+import { getTotalPrice } from 'Redux/selectors';
 
 import './cart.scss';
 
@@ -38,7 +39,7 @@ const Cart = ({
 
     const order = {
       dish,
-      price: totalPrice,
+      totalPrice,
       user,
       orderTime
     };
@@ -101,13 +102,13 @@ const Cart = ({
                     <div className="cart__buttons">
                       <button
                         className="cart__btn"
-                        onClick={() => decreaseInCart(id)}
+                        onClick={() => decreaseInCart(item)}
                         disabled={quantity <= 1 && true}>
                         -
                       </button>
                       <button
                         className="cart__btn"
-                        onClick={() => addToCart(id)}>
+                        onClick={() => addToCart(item)}>
                         +
                       </button>
                     </div>
@@ -118,7 +119,7 @@ const Cart = ({
                   </div>
                   <div 
                     className="cart__close" 
-                    onClick={() => deleteFromCart(id)}>
+                    onClick={() => deleteFromCart(item)}>
                     &times;
                   </div>
                 </div>
@@ -138,17 +139,15 @@ const Cart = ({
   );
 };
 
-const mapStateToProps = ({ menu, auth }) => {
-  return {
-    cart: menu.itemsInCart,
-    isOrderTook: menu.isOrderTook,
-    isLoading: menu.isLoading,
-    hasError: menu.hasError,
-    totalPrice: menu.totalPrice,
-    user: auth.currentUser,
-    isUserLogin: auth.isUserLogin
-  };
-};
+const mapStateToProps = state => ({
+  cart: state.menu.itemsInCart,
+  isOrderTook: state.menu.isOrderTook,
+  isLoading: state.menu.isLoading,
+  hasError: state.menu.hasError,
+  totalPrice: getTotalPrice(state),
+  user: state.auth.currentUser,
+  isUserLogin: state.auth.isUserLogin 
+});
 
 const mapDispatchToProps = {
   deleteFromCart,

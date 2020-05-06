@@ -6,9 +6,9 @@ import PropTypes from 'prop-types';
 import './menu-list-item.scss';
 
 const MenuListItem = memo(
-    ({ menuItem, onAddToCart }) => {
+    ({ menuItem, onAddToCart, itemInCart }) => {
 
-    const { title, price, url, category, id, inCart, description } = menuItem;
+    const { title, price, url, category, id, description } = menuItem;
     const [isFlipped, changeFlipped] = useState(false);
 
     const onClickFlip = () => {
@@ -30,7 +30,7 @@ const MenuListItem = memo(
                 <div className="menu__price">Price: <span>{price}$</span></div>
                 <span className={`menu__category_img ${category}`}></span>
                 <div className="menu__buttons">
-                    {inCart
+                    {itemInCart
                         ? <Link 
                             to='/react-menu-app/cart/' 
                             className="menu__btn menu__link">
@@ -61,7 +61,7 @@ const MenuListItem = memo(
                 <div className="menu__price">Price: <span>{price}$</span></div>
                 <span className={`menu__category_img ${category}`}></span>
                 <div className="menu__buttons">
-                    {inCart
+                    {itemInCart
                         ? <Link 
                             to='/react-menu-app/cart/' 
                             className="menu__btn menu__link">
@@ -78,12 +78,14 @@ const MenuListItem = memo(
         </ReactCardFlip>
     ); 
 }, 
-    (prev, next) => prev.menuItem === next.menuItem
+    (prev, next) => prev.itemInCart === next.itemInCart
 );
 
 MenuListItem.propTypes = {
     menuItem: PropTypes.object.isRequired,
     onAddToCart: PropTypes.func.isRequired,
+    itemInCart: PropTypes.bool.isRequired,
 };
 
 export default MenuListItem;
+  

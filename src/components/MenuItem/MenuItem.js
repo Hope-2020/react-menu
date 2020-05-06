@@ -7,11 +7,13 @@ import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import Spinner from 'components/Spinner';
 import ErrorMessage from 'components/ErrorMessage';
 import { menuLoaded, addToCart } from 'Redux/actions/menu';
+import { inCart } from 'helpers/cart';
 
 import './menu-item.scss';
 
 const MenuItem = ({
-  menuItems, 
+  menuItems,
+  cart,
   menuLoaded,
   isLoading,
   hasError,
@@ -45,11 +47,11 @@ const MenuItem = ({
           <div className="menu__buttons">
             <SwitchTransition>
               <CSSTransition
-                key={item.inCart}
+                key={inCart(cart, item.id)}
                 addEndListener={(node, done) => node.addEventListener("transitionend", done, false)}
                 classNames='fade'
               >
-              {item.inCart
+              {inCart(cart, item.id)
                 ? <Link 
                     to='/react-menu-app/cart/' 
                     className="menu__btn menu__link">
@@ -57,7 +59,7 @@ const MenuItem = ({
                 </Link>
                 : <button 
                     className="menu__btn" 
-                    onClick={() => addToCart(item.id)}>
+                    onClick={() => addToCart(item)}>
                   ORDER
                 </button>
               }
@@ -75,13 +77,12 @@ const MenuItem = ({
   );
 };
 
-const mapStateToProps = ({ menu }) => {
-  return {
-    menuItems: menu.menu,
-    isLoading: menu.isLoading,
-    hasError: menu.hasError
-  };
-};
+const mapStateToProps = ({ menu }) => ({
+  menuItems: menu.menu,
+  cart: menu.itemsInCart,
+  isLoading: menu.isLoading,
+  hasError: menu.hasError
+});
 
 const mapDispatchToProps = {
   menuLoaded,
@@ -92,6 +93,9 @@ MenuItem.propTypes = {
   menuItems: PropTypes.arrayOf(
     PropTypes.object,
   ).isRequired,
+  cart: PropTypes.arrayOf(
+    PropTypes.object,
+  ),
   isLoading: PropTypes.bool.isRequired,
   hasError: PropTypes.bool.isRequired,
   menuLoaded: PropTypes.func.isRequired,

@@ -19,9 +19,7 @@ const getUserData =  async (id) => {
 };
 
 const checkUserIsLogin = () => async dispatch => {
-  dispatch({
-    type: REGISTRATION
-  });
+  dispatch({ type: REGISTRATION });
 
   app.auth().onAuthStateChanged(user => {
     if (user) {
@@ -39,17 +37,13 @@ const checkUserIsLogin = () => async dispatch => {
           });
         })
     } else {
-      dispatch({
-        type: USER_LOGOUT
-      });
+      dispatch({ type: USER_LOGOUT });
     }
   });
 };
 
 const login = (value, history) => async dispatch => {
-  dispatch({
-    type: REGISTRATION
-  });
+  dispatch({ type: REGISTRATION });
 
   try {
     const { user } = await app
@@ -74,9 +68,7 @@ const login = (value, history) => async dispatch => {
     });
 
     setTimeout(() => {
-      dispatch({
-        type: REFRESH_ERROR
-      });
+      dispatch({ type: REFRESH_ERROR });
     }, 5000);
   }
 };
@@ -84,9 +76,7 @@ const login = (value, history) => async dispatch => {
 const signUp = (value, history) => async dispatch=> {
   const { email, password, name, phone } = value;
 
-  dispatch({
-    type: REGISTRATION
-  });
+  dispatch({ type: REGISTRATION });
 
   try {
     const uid = await app
@@ -120,9 +110,7 @@ const signUp = (value, history) => async dispatch=> {
     });
 
     setTimeout(() => {
-      dispatch({
-        type: REFRESH_ERROR
-      });
+      dispatch({ type: REFRESH_ERROR });
     }, 5000);
   }
 };
@@ -131,4 +119,9 @@ const signOut = () => {
   app.auth().signOut();
 };
 
-export { checkUserIsLogin, login, signUp, signOut };
+export { 
+  checkUserIsLogin, 
+  login, 
+  signUp, 
+  signOut
+};
