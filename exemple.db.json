@@ -1,0 +1,69 @@
+{
+  "menu": [{
+    "category": "salads",
+    "description": "A classic chicken salad recipe, featuring crunchy croutons and a creamy, garlic dressing. Ideal for lunch with friends.",
+    "id": 1,
+    "price": 12,
+    "title": "Caesar salad",
+    "url": "https://static.1000.menu/img/content/21458/-salat-cezar-s-kr-salat-cezar-s-krevetkami-s-maionezom_1501173720_1_max.jpg"
+  }, {
+    "category": "pizza",
+    "description": "This light take on an Italian classic starts with an easy homemade dough, topped with no cook tomato sauce and ricotta cheese.",
+    "id": 2,
+    "price": 10,
+    "title": "Pizza Margherita",
+    "url": "https://post-press.net/images//Pizza_Margherita.jpg"
+  }, {
+    "category" : "pizza",
+    "description" : "Beautiful napeoleon pizza with a crunchy crust with mouth melting mozzerela.",
+    "id": 3,
+    "price": 13,
+    "title": "Pizza Napoletana",
+    "url": "https://www.pizzanapoletana.org/struttura/pagine_bicolor/mobile/decalogo_avpn_1.jpg"
+  }, {
+    "category": "salads",
+    "description": "A fresh and colourful salad with large vine tomatoes, cucumber, a red onion, Kalamata olives, oregano, feta cheese, extra virgin olive oil.",
+    "id": 4,
+    "price": 8,
+    "title": "Greece salad",
+    "url": "https://assets.epicurious.com/photos/576454fb42e4a5ed66d1df6b/master/pass/greek-salad.jpg"
+  }, {
+    "category" : "meat",
+    "description" : "Bone-in rib-eye or porterhouse steak, fresh herb sprigs, such as thyme, oregano, and rosemary, garlic.",
+    "id": 5,
+    "price": 25,
+    "title": "Cowboy Steak",
+    "url": "https://i.cbc.ca/1.4491288.1516208229!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_780/cowboysteak.jpg"
+  }],
+
+  "orders": {
+    "-M6fNkzAEIZaOFJPBcZk": {
+      "id": 1,
+      "order": {
+        "dish": [{
+          "name": "Pizza Margherita",
+          "portions": 4
+        }],
+        "orderTime": "06.05.2020, 22:07:41",
+        "totalPrice": 40,
+        "user": {
+          "email": "test@test.ua",
+          "name": "test",
+          "phone": "1231452364",
+          "uid": "cHGgEi2Sp4ZPTOU85EAfj3lWAod2"
+        }
+      }
+    }
+  },
+  
+  "users": {
+    "cHGgEi2Sp4ZPTOU85EAfj3lWAod2": {
+      "-M6_UFFvARMJ5Vhg1LtV": {
+        "email": "test@test.ua",
+        "name": "test",
+        "phone": "1231452364",
+        "uid": "cHGgEi2Sp4ZPTOU85EAfj3lWAod2"
+      }
+    }
+  }
+}

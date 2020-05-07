@@ -7,8 +7,6 @@ import { useForm } from 'react-hook-form';
 import { login } from 'Redux/actions/auth';
 import regExpDictionary from 'helpers/regExpDictionary';
 
-// import './auth.scss';
-
 const Login = ({ login }) => {
   const history = useHistory();
   const { register, handleSubmit, reset, errors } = useForm();

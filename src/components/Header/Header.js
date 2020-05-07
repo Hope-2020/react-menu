@@ -25,7 +25,12 @@ const Header = ({ totalPrice, isUserLogin }) => (
         }
         <NavLink to='/react-menu-app/' className="header__link">Menu</NavLink>
         <NavLink to='/react-menu-app/cart/' className="header__link">
-            <img className="header__cart" src={cartIcon} alt="cart" title='CART'></img>
+            <img 
+                className="header__cart" 
+                src={cartIcon} 
+                alt="cart" 
+                title='CART'>
+            </img>
             Total: {totalPrice} $
         </NavLink>
         {!isUserLogin &&

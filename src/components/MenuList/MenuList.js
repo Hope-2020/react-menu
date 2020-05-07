@@ -5,8 +5,10 @@ import PropTypes from 'prop-types';
 import MenuListItem from './MenuListItem'; 
 import Spinner from 'components/Spinner';
 import ErrorMessage from 'components/ErrorMessage';
+import NothingFound from 'components/NothingFound';
 import { menuLoaded, addToCart } from 'Redux/actions/menu';
 import { inCart } from 'helpers/cart';
+import { getVisibleMenu } from 'Redux/selectors';
 
 import './menu-list.scss';
 
@@ -20,6 +22,7 @@ const MenuList = ({
 }) => {
   const errorMessage = hasError && <div className="item__page"><ErrorMessage /></div>;
   const loader = isLoading && <div className="item__page"><Spinner /></div>;
+  const nothingFound = !menuItems.length && <div className="item__page"><NothingFound /></div>;
 
   useEffect(() => {
     !menuItems.length && menuLoaded();
@@ -27,7 +30,7 @@ const MenuList = ({
   }, []);
 
   return (
-    errorMessage || loader ||
+    errorMessage || loader || nothingFound ||
       <ul className="menu__list">
         {menuItems.map(menuItem => {
           const itemInCart = inCart(cart, menuItem.id);
@@ -42,11 +45,11 @@ const MenuList = ({
   );
 };
 
-const mapStateToProps = ({ menu }) => ({
-  menuItems: menu.menu,
-  cart: menu.itemsInCart,
-  isLoading: menu.isLoading,
-  hasError: menu.hasError
+const mapStateToProps = (state) => ({
+  menuItems: getVisibleMenu(state),
+  cart: state.menu.itemsInCart,
+  isLoading: state.menu.isLoading,
+  hasError: state.menu.hasError
 });
 
 const mapDispatchToProps = {

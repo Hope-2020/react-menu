@@ -4,15 +4,11 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
-import {
-  deleteFromCart,
-  addToCart,
-  decreaseInCart,
-  sendOrder
-} from 'Redux/actions/menu';
+import { sendOrder } from 'Redux/actions/menu';
 import Spinner from 'components/Spinner';
 import ErrorMessage from 'components/ErrorMessage';
 import { getTotalPrice } from 'Redux/selectors';
+import CartItem from './blocks';
 
 import './cart.scss';
 
@@ -24,9 +20,6 @@ const Cart = ({
   isLoading, 
   hasError,
   totalPrice,
-  deleteFromCart,
-  addToCart,
-  decreaseInCart,
   sendOrder
 }) => {
   const history = useHistory();
@@ -81,48 +74,14 @@ const Cart = ({
         <div className="cart__title">Your order:</div>
         <TransitionGroup className="cart__list">
           {cart.map(item => {
-            const { title, price, url, id, quantity } = item;
 
             return (
               <CSSTransition
-                key={id} 
+                key={item.id} 
                 timeout={500}
                 classNames="fade"
               >
-                <div className="cart__item">
-                  <img src={url} className="cart__item-img" alt="Cesar salad"></img>
-                  <div className="cart__item-title">{title}</div>
-                  <div className="cart__item-details">
-                    <span className="cart__item-ins">Price:</span>
-                    <span>{price} $</span>
-                  </div>
-                  <div className="cart__item-details">
-                    <span className="cart__item-ins">Quantity:</span>
-                    <span>{quantity}</span>
-                    <div className="cart__buttons">
-                      <button
-                        className="cart__btn"
-                        onClick={() => decreaseInCart(item)}
-                        disabled={quantity <= 1 && true}>
-                        -
-                      </button>
-                      <button
-                        className="cart__btn"
-                        onClick={() => addToCart(item)}>
-                        +
-                      </button>
-                    </div>
-                  </div>
-                  <div className="cart__item-details">
-                    <span className="cart__item-ins">Amount:</span>
-                    <span>{price * quantity} $</span>
-                  </div>
-                  <div 
-                    className="cart__close" 
-                    onClick={() => deleteFromCart(item)}>
-                    &times;
-                  </div>
-                </div>
+                <CartItem item={item} />
               </CSSTransition>
             );
           })}
@@ -150,10 +109,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  deleteFromCart,
-  addToCart,
-  decreaseInCart,
-  sendOrder,
+  sendOrder
 };
 
 Cart.propTypes = {
@@ -166,10 +122,7 @@ Cart.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   hasError: PropTypes.bool.isRequired,
   totalPrice: PropTypes.number.isRequired,
-  deleteFromCart: PropTypes.func.isRequired,
-  addToCart: PropTypes.func.isRequired,
-  decreaseInCart: PropTypes.func.isRequired,
-  sendOrder: PropTypes.func.isRequired,
+  sendOrder: PropTypes.func.isRequired
 };
 
 export default connect(
