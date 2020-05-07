@@ -1,19 +1,13 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import debounce from 'lodash/debounce';
+import { DebounceInput } from 'react-debounce-input';
 
 import { updateSearch, sortMenu } from 'Redux/actions/filter-menu';
 import './search.scss';
 
-const SearchBar = ({ updateSearch, sortMenu }) => {
+const SearchBar = ({ searchQuery, updateSearch, sortMenu }) => {
   const [sortByPrice, setSortByPrice] = useState(true);
-
-  const updateSearchWithDebounce = useCallback(debounce(updateSearch, 1000), []);
-
-  const handleUpdateSearch = ({ target }) => {
-    updateSearchWithDebounce(target.value);
-  }
 
   const handleSortByPrice = (value) => {
     setSortByPrice(!sortByPrice);
@@ -22,11 +16,14 @@ const SearchBar = ({ updateSearch, sortMenu }) => {
   
   return (
     <div className="search-container">
-      <input
+      <DebounceInput
+        minLength={2}
+        debounceTimeout={1000}
         type="text"
+        value={searchQuery}
         title="Find your dish"
         placeholder="Search..."
-        onChange={handleUpdateSearch}
+        onChange={({ target }) => updateSearch(target.value)}
       />
       <div className="search">
         {sortByPrice ? (
@@ -55,8 +52,13 @@ const SearchBar = ({ updateSearch, sortMenu }) => {
 
 SearchBar.propTypes = {
   updateSearch: PropTypes.func.isRequired,
-  sortMenu: PropTypes.func.isRequired
+  sortMenu: PropTypes.func.isRequired,
+  searchQuery: PropTypes.string.isRequired
 };
+
+const mapStateToProps = ({ filter }) => ({
+  searchQuery: filter.searchQuery
+});
 
 const mapDispatchToProps = {
   updateSearch,
@@ -64,7 +66,7 @@ const mapDispatchToProps = {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(SearchBar);
 

@@ -22,7 +22,8 @@ export const getVisibleMenu = createSelector([getMenu, getSearchQuery, getSortTy
     if (searchQuery.length) {
       return visibleMenu.filter(item => item.title
         .toLowerCase()
-        .includes(searchQuery.toLowerCase().trim()));
+        .includes(searchQuery.toLowerCase().trim())
+      );
     }
 
     return visibleMenu;
