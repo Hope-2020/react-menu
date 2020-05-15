@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
 
-import Spinner from 'components/Spinner';
-import ErrorMessage from 'components/ErrorMessage';
+import Spinner from 'components/UI/Spinner';
+import ErrorMessage from 'components/UI/ErrorMessage';
 import { menuLoaded, addToCart } from 'Redux/actions/menu';
 import { inCart } from 'helpers/cart';
 
@@ -43,7 +43,7 @@ const MenuItem = ({
           <div className="menu__title">{item.description}</div>
           <div className="menu__category">Category: <span>{item.category}</span></div>
           <div className="menu__price">Price: <span>{item.price}$</span></div>
-          <span className={`menu__category_img alert ${item.category}`}></span>
+          <span className={`menu__category_img ${item.category}`}></span>
           <div className="menu__buttons">
             <SwitchTransition>
               <CSSTransition

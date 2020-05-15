@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 
-import PrivateRoute from "components/Private-route";
 import { 
     MainPage, 
     CartPage, 
@@ -12,11 +11,12 @@ import {
     AuthPage,
     UserDashboardPage
 } from 'Pages';
+import PrivateRoute from "components/Private-route";
 import Header from 'components/Header';
-import Footer from 'components/Footer';
+import Footer from 'components/UI/Footer';
 import { checkUserIsLogin } from 'Redux/actions/auth';
 
-import Background from './food-bg.jpg';
+import Background from 'pictures/food-bg.jpg';
 
 const AppBackground = styled.div`
     background: url(${Background}) center center/cover no-repeat;
@@ -25,7 +25,6 @@ const AppBackground = styled.div`
 const App = ({ checkUserIsLogin }) => {
     useEffect(() => {
         checkUserIsLogin();
-    
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -37,7 +36,7 @@ const App = ({ checkUserIsLogin }) => {
                 <Route path='/react-menu-app/cart/' exact component={CartPage} />
                 <Route path='/react-menu-app/menu/:id' component={MenuItemPage} />
                 <Route path='/react-menu-app/authorization/' exact component={AuthPage} />
-                <PrivateRoute exact path='/react-menu-app/dashboard/' component={UserDashboardPage} />
+                <PrivateRoute path='/react-menu-app/dashboard/' exact component={UserDashboardPage} />
             </Switch>
             <Footer />
         </AppBackground>

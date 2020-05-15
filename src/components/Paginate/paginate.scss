@@ -1,0 +1,16 @@
+.paginate__block {
+  display: flex;
+  justify-content: center;
+  padding: 1em;
+}
+
+.paginate__link {
+  background-color: #29a745 !important;
+  border-color: #29a745 !important;
+  border-radius: 5px;
+}
+
+.paginate__item {
+  margin: 0 3px;
+  font-weight: bold;
+}

@@ -11,7 +11,8 @@ export const getTotalPrice = createSelector([getItemsInCart],
   }, 0)
 );
 
-export const getVisibleMenu = createSelector([getMenu, getSearchQuery, getSortType],
+export const getVisibleMenu = createSelector(
+  [getMenu, getSearchQuery, getSortType],
   (menu, searchQuery, sortType) => {
     const visibleMenu = [...menu];
 

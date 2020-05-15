@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import { sendOrder } from 'Redux/actions/menu';
-import Spinner from 'components/Spinner';
-import ErrorMessage from 'components/ErrorMessage';
+import Spinner from 'components/UI/Spinner';
+import ErrorMessage from 'components/UI/ErrorMessage';
 import { getTotalPrice } from 'Redux/selectors';
 import CartItem from './blocks';
 

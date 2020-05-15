@@ -1,5 +1,6 @@
 {
-  "menu": [{
+  "menu": [
+  {
     "category": "salads",
     "description": "A classic chicken salad recipe, featuring crunchy croutons and a creamy, garlic dressing. Ideal for lunch with friends.",
     "id": 1,
@@ -34,7 +35,260 @@
     "price": 25,
     "title": "Cowboy Steak",
     "url": "https://i.cbc.ca/1.4491288.1516208229!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_780/cowboysteak.jpg"
-  }],
+  },
+  {
+    "category": "salads",
+    "description": "The mandarin oranges give it a burst of freshness while the Parmesan gives it a bite of sharpness and nuttiness.",
+    "id": 6,
+    "price": 15,
+    "title": "Mandarin Orange Salad",
+    "url": "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/delish-190611-mandarin-orange-salad-281-landscape-pf-1561556605.png"
+  }, {
+    "category": "pizza",
+    "description": "This light take on an Italian classic starts with an easy homemade dough, topped with no cook tomato sauce and ricotta cheese.",
+    "id": 7,
+    "price": 6,
+    "title": "Pizza Classic",
+    "url": "https://www.svoimirykami.club/wp-content/uploads/2017/09/Italijskaya-pitstsa-min.jpg"
+  }, {
+    "category" : "pizza",
+    "description" : "Beautiful napeoleon pizza with a crunchy crust with mouth melting mozzerela.",
+    "id": 8,
+    "price": 14,
+    "title": "Pizza Oregano",
+    "url": "https://vogue.ua/media/cache/resolve/inline_990x/uploads/article-inline/7d3/89b/b29/5e84b2989b7d3.jpeg"
+  }, {
+    "category": "salads",
+    "description": "A fresh and colourful salad with large vine tomatoes, cucumber, a red onion, Kalamata olives, oregano, feta cheese, extra virgin olive oil.",
+    "id": 9,
+    "price": 9,
+    "title": "Green salad",
+    "url": "https://www.thespruceeats.com/thmb/hZGVHOxkCv-jhaTBvOWQ6eZOi9Q=/2229x1672/smart/filters:no_upscale()/perfectgreensalad2500-5993ab28c412440011db26df.jpg"
+  }, {
+    "category" : "meat",
+    "description" : "Bone-in rib-eye or porterhouse steak, fresh herb sprigs, such as thyme, oregano, and rosemary, garlic.",
+    "id": 10,
+    "price": 27,
+    "title": "Grilled Cowboy Rib Eye",
+    "url": "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2014/5/28/0/KC0207_Grilled-Cowboy-Rib-Eye-with-Watercress-Salad_s4x3.jpg.rend.hgtvcom.826.620.suffix/1401292668356.jpeg"
+  },
+  {
+    "category": "salads",
+    "description": "A tasty, Asian-inspired marinated beef and noodle dish, perfect for a midweek meal.",
+    "id": 11,
+    "price": 9,
+    "title": "Barbecued chilli beef salad",
+    "url": "https://img.taste.com.au/N8dTqcnq/taste/2016/11/barbecued-chilli-beef-noodle-salad-with-zingy-dressing-101589-1.jpeg"
+  }, {
+    "category": "pizza",
+    "description": "Sweet pizza with fresh fruits and berries.",
+    "id": 12,
+    "price": 10,
+    "title": "Sweet Pizza",
+    "url": "https://cdn.shortpixel.ai/client/q_lossless,ret_img/https://cookery.site/wp-content/uploads/2019/12/photo_617837-678x381.jpg"
+  }, {
+    "category" : "pizza",
+    "description" : "Beautiful pizza with sausage.",
+    "id": 13,
+    "price": 13,
+    "title": "Sausage Pizza",
+    "url": "https://www.chefmarket.ru/blog/wp-content/uploads/2019/03/pizza-e1552892767472.jpg"
+  }, {
+    "category": "salads",
+    "description": "A vegetarian, low-carb salad might not sound like a filling meal, but this powerhouse is loaded with protein and leafy greens that that will power you through your day.",
+    "id": 14,
+    "price": 8,
+    "title": "Powerhouse Kale Salad",
+    "url": "https://www.diabetesfoodhub.org/system/thumbs/system/images/recipes/931-diabetic-powerhouse-kale-salad_designed-for-one_071118_3547183137.jpg"
+  }, {
+    "category" : "meat",
+    "description" : "This robust marinade is perfect to accentuate the meaty flavor this big steak provides.",
+    "id": 15,
+    "price": 29,
+    "title": "Bourbon Marinated Steak",
+    "url": "https://www.nuggetmarket.com/media/images/11/10/IMG_2974.jpg"
+  },
+  {
+    "category": "salads",
+    "description": "Mixing the avocado with the leafy greens and hearty veggies creates a creamy dressing in one easy step.",
+    "id": 16,
+    "price": 11,
+    "title": "Sandra Lee's Stockpot Salad",
+    "url": "https://media1.s-nbcnews.com/i/newscms/2018_42/1378147/sandra-lee-food-today-main-181018-02_28c1f1d7033c651ae8bd93a89f929201.jpg"
+  }, {
+    "category": "pizza",
+    "description": "This light take on an Italian classic starts with an easy homemade dough, topped with no cook tomato sauce and ricotta cheese.",
+    "id": 17,
+    "price": 10,
+    "title": "Pizza Margherita",
+    "url": "https://post-press.net/images//Pizza_Margherita.jpg"
+  }, {
+    "category" : "pizza",
+    "description" : "Beautiful napeoleon pizza with a crunchy crust with mouth melting mozzerela.",
+    "id": 18,
+    "price": 14,
+    "title": "Pizza Napoletana",
+    "url": "https://www.pizzanapoletana.org/struttura/pagine_bicolor/mobile/decalogo_avpn_1.jpg"
+  }, {
+    "category": "salads",
+    "description": "A fresh and colourful salad with large vine tomatoes, cucumber, a red onion, Kalamata olives, oregano, feta cheese, extra virgin olive oil.",
+    "id": 19,
+    "price": 7,
+    "title": "Greece salad",
+    "url": "https://assets.epicurious.com/photos/576454fb42e4a5ed66d1df6b/master/pass/greek-salad.jpg"
+  }, {
+    "category" : "meat",
+    "description" : "Bone-in rib-eye or porterhouse steak, fresh herb sprigs, such as thyme, oregano, and rosemary, garlic.",
+    "id": 20,
+    "price": 29,
+    "title": "Cowboy Steak",
+    "url": "https://i.cbc.ca/1.4491288.1516208229!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_780/cowboysteak.jpg"
+  },
+  {
+    "category": "salads",
+    "description": "A classic chicken salad recipe, featuring crunchy croutons and a creamy, garlic dressing. Ideal for lunch with friends.",
+    "id": 21,
+    "price": 12,
+    "title": "Caesar salad",
+    "url": "https://static.1000.menu/img/content/21458/-salat-cezar-s-kr-salat-cezar-s-krevetkami-s-maionezom_1501173720_1_max.jpg"
+  }, {
+    "category": "pizza",
+    "description": "This light take on an Italian classic starts with an easy homemade dough, topped with no cook tomato sauce and ricotta cheese.",
+    "id": 22,
+    "price": 10,
+    "title": "Pizza Margherita",
+    "url": "https://post-press.net/images//Pizza_Margherita.jpg"
+  }, {
+    "category" : "pizza",
+    "description" : "Beautiful napeoleon pizza with a crunchy crust with mouth melting mozzerela.",
+    "id": 23,
+    "price": 14,
+    "title": "Pizza Napoletana",
+    "url": "https://www.pizzanapoletana.org/struttura/pagine_bicolor/mobile/decalogo_avpn_1.jpg"
+  }, {
+    "category": "salads",
+    "description": "Mixing the avocado with the leafy greens and hearty veggies creates a creamy dressing in one easy step.",
+    "id": 16,
+    "price": 11,
+    "title": "Sandra Lee's Stockpot Salad",
+    "url": "https://media1.s-nbcnews.com/i/newscms/2018_42/1378147/sandra-lee-food-today-main-181018-02_28c1f1d7033c651ae8bd93a89f929201.jpg"
+  }, {
+    "category" : "meat",
+    "description" : "Bone-in rib-eye or porterhouse steak, fresh herb sprigs, such as thyme, oregano, and rosemary, garlic.",
+    "id": 25,
+    "price": 29,
+    "title": "Cowboy Steak",
+    "url": "https://i.cbc.ca/1.4491288.1516208229!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_780/cowboysteak.jpg"
+  },
+  {
+    "category": "salads",
+    "description": "A classic chicken salad recipe, featuring crunchy croutons and a creamy, garlic dressing. Ideal for lunch with friends.",
+    "id": 26,
+    "price": 12,
+    "title": "Caesar salad",
+    "url": "https://static.1000.menu/img/content/21458/-salat-cezar-s-kr-salat-cezar-s-krevetkami-s-maionezom_1501173720_1_max.jpg"
+  }, {
+    "category": "pizza",
+    "description": "This light take on an Italian classic starts with an easy homemade dough, topped with no cook tomato sauce and ricotta cheese.",
+    "id": 27,
+    "price": 10,
+    "title": "Pizza Margherita",
+    "url": "https://post-press.net/images//Pizza_Margherita.jpg"
+  }, {
+    "category" : "pizza",
+    "description" : "Beautiful napeoleon pizza with a crunchy crust with mouth melting mozzerela.",
+    "id": 28,
+    "price": 11,
+    "title": "Pizza Napoletana",
+    "url": "https://www.pizzanapoletana.org/struttura/pagine_bicolor/mobile/decalogo_avpn_1.jpg"
+  }, {
+    "category": "salads",
+    "description": "A fresh and colourful salad with large vine tomatoes, cucumber, a red onion, Kalamata olives, oregano, feta cheese, extra virgin olive oil.",
+    "id": 29,
+    "price": 8,
+    "title": "Greece salad",
+    "url": "https://assets.epicurious.com/photos/576454fb42e4a5ed66d1df6b/master/pass/greek-salad.jpg"
+  }, {
+    "category" : "meat",
+    "description" : "Bone-in rib-eye or porterhouse steak, fresh herb sprigs, such as thyme, oregano, and rosemary, garlic.",
+    "id": 30,
+    "price": 21,
+    "title": "Cowboy Steak",
+    "url": "https://i.cbc.ca/1.4491288.1516208229!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_780/cowboysteak.jpg"
+  },
+  {
+    "category" : "pizza",
+    "description" : "Beautiful napeoleon pizza with a crunchy crust with mouth melting mozzerela.",
+    "id": 8,
+    "price": 14,
+    "title": "Pizza Oregano",
+    "url": "https://vogue.ua/media/cache/resolve/inline_990x/uploads/article-inline/7d3/89b/b29/5e84b2989b7d3.jpeg"
+  }, {
+    "category": "pizza",
+    "description": "This light take on an Italian classic starts with an easy homemade dough, topped with no cook tomato sauce and ricotta cheese.",
+    "id": 32,
+    "price": 10,
+    "title": "Pizza Margherita",
+    "url": "https://post-press.net/images//Pizza_Margherita.jpg"
+  }, {
+    "category": "salads",
+    "description": "Mixing the avocado with the leafy greens and hearty veggies creates a creamy dressing in one easy step.",
+    "id": 16,
+    "price": 11,
+    "title": "Sandra Lee's Stockpot Salad",
+    "url": "https://media1.s-nbcnews.com/i/newscms/2018_42/1378147/sandra-lee-food-today-main-181018-02_28c1f1d7033c651ae8bd93a89f929201.jpg"
+  }, {
+    "category": "salads",
+    "description": "A fresh and colourful salad with large vine tomatoes, cucumber, a red onion, Kalamata olives, oregano, feta cheese, extra virgin olive oil.",
+    "id": 34,
+    "price": 8,
+    "title": "Greece salad",
+    "url": "https://assets.epicurious.com/photos/576454fb42e4a5ed66d1df6b/master/pass/greek-salad.jpg"
+  }, {
+    "category" : "meat",
+    "description" : "Bone-in rib-eye or porterhouse steak, fresh herb sprigs, such as thyme, oregano, and rosemary, garlic.",
+    "id": 35,
+    "price": 25,
+    "title": "Cowboy Steak",
+    "url": "https://i.cbc.ca/1.4491288.1516208229!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_780/cowboysteak.jpg"
+  },
+  {
+    "category": "salads",
+    "description": "A classic chicken salad recipe, featuring crunchy croutons and a creamy, garlic dressing. Ideal for lunch with friends.",
+    "id": 36,
+    "price": 12,
+    "title": "Caesar salad",
+    "url": "https://static.1000.menu/img/content/21458/-salat-cezar-s-kr-salat-cezar-s-krevetkami-s-maionezom_1501173720_1_max.jpg"
+  }, {
+    "category": "pizza",
+    "description": "This light take on an Italian classic starts with an easy homemade dough, topped with no cook tomato sauce and ricotta cheese.",
+    "id": 37,
+    "price": 10,
+    "title": "Pizza Margherita",
+    "url": "https://post-press.net/images//Pizza_Margherita.jpg"
+  }, {
+    "category" : "pizza",
+    "description" : "Beautiful napeoleon pizza with a crunchy crust with mouth melting mozzerela.",
+    "id": 38,
+    "price": 13,
+    "title": "Pizza Napoletana",
+    "url": "https://www.pizzanapoletana.org/struttura/pagine_bicolor/mobile/decalogo_avpn_1.jpg"
+  }, {
+    "category": "salads",
+    "description": "A fresh and colourful salad with large vine tomatoes, cucumber, a red onion, Kalamata olives, oregano, feta cheese, extra virgin olive oil.",
+    "id": 39,
+    "price": 8,
+    "title": "Greece salad",
+    "url": "https://assets.epicurious.com/photos/576454fb42e4a5ed66d1df6b/master/pass/greek-salad.jpg"
+  }, {
+    "category" : "pizza",
+    "description" : "Beautiful napeoleon pizza with a crunchy crust with mouth melting mozzerela.",
+    "id": 8,
+    "price": 14,
+    "title": "Pizza Oregano",
+    "url": "https://vogue.ua/media/cache/resolve/inline_990x/uploads/article-inline/7d3/89b/b29/5e84b2989b7d3.jpeg"
+  }
+],
 
   "orders": {
     "-M6fNkzAEIZaOFJPBcZk": {

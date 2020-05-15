@@ -1,30 +1,36 @@
 import {
   SORT_MENU,
-  SEARCH_ITEM
-} from "../actions/filter-menu"
+  SEARCH_ITEM,
+  CURRENT_PAGE
+} from "../actions/filter-menu";
 
 const initialState = {
   searchQuery: '',
-  sortType: null
-}
+  sortType: null,
+  pageSize: 8,
+  currentPage: 0
+};
+
+const handlers = {
+  [SORT_MENU]: (state, action) => ({
+    ...state,
+    sortType: action.payload
+  }),
+  [SEARCH_ITEM]: (state, action) => ({
+    ...state,
+    searchQuery: action.payload
+  }),
+  [CURRENT_PAGE]: (state, action) => ({
+    ...state,
+    currentPage: action.payload
+  }),
+  DEFAULT: state => state
+};
 
 const filter = (state = initialState, action) => {
-  switch (action.type) {
-    case SORT_MENU:
-      return {
-        ...state,
-        sortType: action.payload
-      }
+  const handler = handlers[action.type] || handlers.DEFAULT;
 
-    case SEARCH_ITEM:
-      return {
-        ...state,
-        searchQuery: action.payload
-      }
-
-    default:
-      return state
-  }
+  return handler(state, action);
 };
 
 export default filter;

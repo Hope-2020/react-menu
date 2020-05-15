@@ -6,9 +6,9 @@ import PropTypes from 'prop-types';
 import { signOut } from 'Redux/actions/auth';
 import { getTotalPrice } from 'Redux/selectors';
 
-import cartIcon from './shopping-cart-solid.svg';
-import exitIcon from './exit.png';
-import userIcon from './user.png';
+import cartIcon from 'pictures/shopping-cart-solid.svg';
+import exitIcon from 'pictures/exit.png';
+import userIcon from 'pictures/user.png';
 import './header.scss';
 
 const Header = ({ totalPrice, isUserLogin }) => (

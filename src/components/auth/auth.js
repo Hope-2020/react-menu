@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import { Login, SignUp } from './blocks';
-import Spinner from 'components/Spinner';
-import ErrorMessage from 'components/ErrorMessage';
+import Spinner from 'components/UI/Spinner';
+import ErrorMessage from 'components/UI/ErrorMessage';
 
 import './auth.scss';
 

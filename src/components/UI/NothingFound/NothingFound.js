@@ -1,6 +1,6 @@
 import React from 'react';
 
-import nothingFound from './empty_plate.jpg';
+import nothingFound from 'pictures/empty_plate.jpg';
 import './nothing-found.scss';
 
 const NothingFound = () => (

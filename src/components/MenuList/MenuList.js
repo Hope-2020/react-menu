@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 
 import MenuListItem from './MenuListItem'; 
-import Spinner from 'components/Spinner';
-import ErrorMessage from 'components/ErrorMessage';
-import NothingFound from 'components/NothingFound';
+import Spinner from 'components/UI/Spinner';
+import ErrorMessage from 'components/UI/ErrorMessage';
+import NothingFound from 'components/UI/NothingFound';
 import { menuLoaded, addToCart } from 'Redux/actions/menu';
 import { inCart } from 'helpers/cart';
 import { getVisibleMenu } from 'Redux/selectors';
@@ -18,11 +19,14 @@ const MenuList = ({
   isLoading,
   hasError,
   menuLoaded,
-  addToCart
+  addToCart,
+  pageSize,
+  currentPage
 }) => {
   const errorMessage = hasError && <div className="item__page"><ErrorMessage /></div>;
   const loader = isLoading && <div className="item__page"><Spinner /></div>;
   const nothingFound = !menuItems.length && <div className="item__page"><NothingFound /></div>;
+  const visibleMenu = _.chunk(menuItems, pageSize)[currentPage];
 
   useEffect(() => {
     !menuItems.length && menuLoaded();
@@ -32,11 +36,11 @@ const MenuList = ({
   return (
     errorMessage || loader || nothingFound ||
       <ul className="menu__list">
-        {menuItems.map(menuItem => {
+        {visibleMenu.map(menuItem => {
           const itemInCart = inCart(cart, menuItem.id);
 
-          return <MenuListItem 
-            key={menuItem.id} 
+          return <MenuListItem
+            key={menuItem.id}
             menuItem={menuItem}
             itemInCart={itemInCart}
             onAddToCart={() => addToCart(menuItem)} />
@@ -49,7 +53,9 @@ const mapStateToProps = (state) => ({
   menuItems: getVisibleMenu(state),
   cart: state.menu.itemsInCart,
   isLoading: state.menu.isLoading,
-  hasError: state.menu.hasError
+  hasError: state.menu.hasError,
+  pageSize: state.filter.pageSize,
+  currentPage: state.filter.currentPage
 });
 
 const mapDispatchToProps = {
@@ -67,7 +73,9 @@ MenuList.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   hasError: PropTypes.bool.isRequired,
   menuLoaded: PropTypes.func.isRequired,
-  addToCart: PropTypes.func.isRequired
+  addToCart: PropTypes.func.isRequired,
+  pageSize: PropTypes.number.isRequired,
+  currentPage: PropTypes.number.isRequired
 };
 
 export default connect(

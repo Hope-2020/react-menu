@@ -14,46 +14,39 @@ const initialState = {
   errorMessage: ''
 };
 
+const handlers = {
+  [PROVIDE_USER]: (state, action) => ({
+    ...state,
+    currentUser: action.payload,
+    isUserLogin: true,
+    isRecording: false
+  }),
+  [REGISTRATION]: state => ({
+    ...state,
+    isRecording: true
+  }),
+  [IS_ERROR]: (state, action) => ({
+    ...state,
+    isError: true,
+    errorMessage: action.payload,
+    isRecording: false
+  }),
+  [REFRESH_ERROR]: state => ({
+    ...state,
+    isError: false
+  }),
+  [USER_LOGOUT]: state => ({
+    ...state,
+    isUserLogin: false,
+    isRecording: false
+  }),
+  DEFAULT: state => state
+};
+
 const auth = (state = initialState, action) => {
-  switch (action.type) {
-    case PROVIDE_USER:
-      return {
-        ...state,
-        currentUser: action.payload,
-        isUserLogin: true,
-        isRecording: false
-      };
-
-    case REGISTRATION:
-      return {
-        ...state,
-        isRecording: true
-      };
-
-    case IS_ERROR:
-      return {
-        ...state,
-        isError: true,
-        errorMessage: action.payload,
-        isRecording: false
-      };
-
-    case REFRESH_ERROR:
-      return {
-        ...state,
-        isError: false
-      };
-
-    case USER_LOGOUT:
-      return {
-        ...state,
-        isUserLogin: false,
-        isRecording: false
-      };
+  const handler = handlers[action.type] || handlers.DEFAULT;
   
-    default:
-      return state;
-  }
+  return handler(state, action);
 };
 
 export default auth;

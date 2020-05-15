@@ -19,63 +19,50 @@ const initialState = {
   isOrderTook: false
 };
 
+const handlers = {
+  [MENU_LOADED]: (state, action) => ({
+    ...state,
+    menu: action.payload,
+    isLoading: false
+  }),
+  [LOADING]: state => ({
+    ...state,
+    isLoading: true
+  }),
+  [HAS_ERROR]: state => ({
+    ...state,
+    hasError: true,
+    isLoading: false
+  }),
+  [ADD_TO_CART]: (state, action) => ({
+    ...state,
+    itemsInCart: getNewCart(state.itemsInCart, action.payload, 'add')
+  }),
+  [DELETE_FROM_CART]: (state, action) => ({
+    ...state,
+    itemsInCart: getNewCart(state.itemsInCart, action.payload, 'del')
+  }),
+  [DECREASE_IN_CART]: (state, action) => ({
+    ...state,
+    itemsInCart: getNewCart(state.itemsInCart, action.payload, 'decr')
+  }),
+  [ORDER_SUCCESS]: state => ({
+    ...state,
+    itemsInCart: [],
+    isOrderTook: true,
+    isLoading: false
+  }),
+  [REFRESH_ORDER]: state => ({
+    ...state,
+    isOrderTook: false
+  }),
+  DEFAULT: state => state
+};
+
 const menu = (state = initialState, action) => {
-  switch (action.type) {
-    case MENU_LOADED:
-      return {
-        ...state,
-        menu: action.payload,
-        isLoading: false
-      };
-
-    case LOADING:
-      return {
-        ...state,
-        isLoading: true
-      };
-
-    case HAS_ERROR:
-      return {
-        ...state,
-        hasError: true,
-        isLoading: false
-      };
-
-    case ADD_TO_CART:
-      return {
-        ...state,
-        itemsInCart: getNewCart(state.itemsInCart, action.payload, 'add')
-      };
-
-    case DELETE_FROM_CART:
-      return {
-        ...state,
-        itemsInCart: getNewCart(state.itemsInCart, action.payload, 'del')
-      };
-
-    case DECREASE_IN_CART:
-      return {
-        ...state,
-        itemsInCart: getNewCart(state.itemsInCart, action.payload, 'decr')
-      };
-      
-    case ORDER_SUCCESS:
-      return {
-        ...state,
-        itemsInCart: [],
-        isOrderTook: true,
-        isLoading: false
-      };
-    
-    case REFRESH_ORDER:
-      return {
-        ...state,
-        isOrderTook: false,
-      };
-
-    default:
-      return state;
-  }
+  const handler = handlers[action.type] || handlers.DEFAULT;
+  
+  return handler(state, action);
 };
 
 export default menu;
