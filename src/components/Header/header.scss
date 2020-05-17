@@ -2,9 +2,13 @@
     background-color: rgba(0,0,0, .5);
     height: 60px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     padding: 0 50px;
+
+    &__right {
+        display: flex;
+    }
 
     &__link {
         display: flex;
@@ -30,9 +34,13 @@
     &__exit {
         width: 30px;
     }
+
+    &__logo {
+        width: 75px;
+    }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 550px) {
     .header {
         justify-content: center;
         padding: 0 20px;
@@ -41,4 +49,14 @@
             margin-right: 15px;
         }
     }
-  }
+}
+
+@media (max-width: 400px) {
+    .header {
+        padding: 0;
+
+        &__link {
+            margin-right: 5px;
+        }
+    }
+}

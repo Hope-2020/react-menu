@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
-import { sendOrder } from 'Redux/actions/menu';
+import { sendOrder } from 'Redux/actions/cart';
 import Spinner from 'components/UI/Spinner';
 import ErrorMessage from 'components/UI/ErrorMessage';
 import { getTotalPrice } from 'Redux/selectors';
@@ -17,14 +17,14 @@ const Cart = ({
   user,
   isUserLogin,
   isOrderTook, 
-  isLoading, 
-  hasError,
+  isOrdering, 
+  error,
   totalPrice,
   sendOrder
 }) => {
   const history = useHistory();
-  const errorMessage = hasError && <ErrorMessage />;
-  const loader = isLoading && <Spinner />;
+  const errorMessage = error && <ErrorMessage />;
+  const loader = isOrdering && <Spinner />;
 
   const onTakeOrder = () => {
     const dish = cart.map(item => ({name: item.title, portions: item.quantity}));
@@ -99,10 +99,10 @@ const Cart = ({
 };
 
 const mapStateToProps = state => ({
-  cart: state.menu.itemsInCart,
-  isOrderTook: state.menu.isOrderTook,
-  isLoading: state.menu.isLoading,
-  hasError: state.menu.hasError,
+  cart: state.cart.itemsInCart,
+  isOrderTook: state.cart.isOrderTook,
+  isOrdering: state.cart.isOrdering,
+  error: state.cart.error,
   totalPrice: getTotalPrice(state),
   user: state.auth.currentUser,
   isUserLogin: state.auth.isUserLogin 
@@ -119,8 +119,8 @@ Cart.propTypes = {
   user: PropTypes.object,
   isUserLogin: PropTypes.bool.isRequired,
   isOrderTook: PropTypes.bool.isRequired,
-  isLoading: PropTypes.bool.isRequired,
-  hasError: PropTypes.bool.isRequired,
+  isOrdering: PropTypes.bool.isRequired,
+  error: PropTypes.bool.isRequired,
   totalPrice: PropTypes.number.isRequired,
   sendOrder: PropTypes.func.isRequired
 };

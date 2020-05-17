@@ -1,6 +1,6 @@
 import { createSelector } from "reselect";
 
-export const getItemsInCart = state => state.menu.itemsInCart;
+export const getItemsInCart = state => state.cart.itemsInCart;
 export const getMenu = state => state.menu.menu;
 export const getSearchQuery = state => state.filter.searchQuery;
 export const getSortType = state => state.filter.sortType;

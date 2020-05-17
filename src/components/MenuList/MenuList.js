@@ -7,7 +7,8 @@ import MenuListItem from './MenuListItem';
 import Spinner from 'components/UI/Spinner';
 import ErrorMessage from 'components/UI/ErrorMessage';
 import NothingFound from 'components/UI/NothingFound';
-import { menuLoaded, addToCart } from 'Redux/actions/menu';
+import { menuLoaded } from 'Redux/actions/menu';
+import { addToCart } from 'Redux/actions/cart';
 import { inCart } from 'helpers/cart';
 import { getVisibleMenu } from 'Redux/selectors';
 
@@ -51,7 +52,7 @@ const MenuList = ({
 
 const mapStateToProps = (state) => ({
   menuItems: getVisibleMenu(state),
-  cart: state.menu.itemsInCart,
+  cart: state.cart.itemsInCart,
   isLoading: state.menu.isLoading,
   hasError: state.menu.hasError,
   pageSize: state.filter.pageSize,

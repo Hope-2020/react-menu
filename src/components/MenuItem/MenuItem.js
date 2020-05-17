@@ -6,7 +6,8 @@ import { SwitchTransition, CSSTransition } from 'react-transition-group';
 
 import Spinner from 'components/UI/Spinner';
 import ErrorMessage from 'components/UI/ErrorMessage';
-import { menuLoaded, addToCart } from 'Redux/actions/menu';
+import { menuLoaded } from 'Redux/actions/menu';
+import { addToCart } from 'Redux/actions/cart';
 import { inCart } from 'helpers/cart';
 
 import './menu-item.scss';
@@ -77,11 +78,11 @@ const MenuItem = ({
   );
 };
 
-const mapStateToProps = ({ menu }) => ({
-  menuItems: menu.menu,
-  cart: menu.itemsInCart,
-  isLoading: menu.isLoading,
-  hasError: menu.hasError
+const mapStateToProps = (state) => ({
+  menuItems: state.menu.menu,
+  cart: state.cart.itemsInCart,
+  isLoading: state.menu.isLoading,
+  hasError: state.menu.hasError
 });
 
 const mapDispatchToProps = {

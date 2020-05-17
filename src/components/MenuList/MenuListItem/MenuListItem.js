@@ -82,7 +82,14 @@ const MenuListItem = memo(
 );
 
 MenuListItem.propTypes = {
-    menuItem: PropTypes.object.isRequired,
+    menuItem: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        url: PropTypes.string.isRequired,
+        category: PropTypes.string.isRequired,
+        id: PropTypes.number.isRequired,
+        description: PropTypes.string.isRequired
+    }).isRequired,
     onAddToCart: PropTypes.func.isRequired,
     itemInCart: PropTypes.bool.isRequired,
 };

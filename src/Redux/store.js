@@ -8,7 +8,7 @@ import reducer from './reducers';
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['menu', 'auth']
+  whitelist: ['cart', 'auth']
 };
 
 const persistedReducer = persistReducer(persistConfig, reducer);

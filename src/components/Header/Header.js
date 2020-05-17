@@ -9,44 +9,57 @@ import { getTotalPrice } from 'Redux/selectors';
 import cartIcon from 'pictures/shopping-cart-solid.svg';
 import exitIcon from 'pictures/exit.png';
 import userIcon from 'pictures/user.png';
+import menuLogo from 'pictures/menu1.png'
 import './header.scss';
 
 const Header = ({ totalPrice, isUserLogin }) => (
     <header className="header">
-        {isUserLogin &&
-            <NavLink to='/react-menu-app/dashboard/' className="header__link">
+        <div>
+            <NavLink to='/react-menu-app/'>
                 <img 
-                    className="header__exit" 
-                    title="DASHBOARD"
-                    src={userIcon} 
-                    alt="dashboard">
+                    className="header__logo" 
+                    title="MENU"
+                    src={menuLogo} 
+                    alt="logo">
                 </img>
             </NavLink>
-        }
-        <NavLink to='/react-menu-app/' className="header__link">Menu</NavLink>
-        <NavLink to='/react-menu-app/cart/' className="header__link">
-            <img 
-                className="header__cart" 
-                src={cartIcon} 
-                alt="cart" 
-                title='CART'>
-            </img>
-            Total: {totalPrice} $
-        </NavLink>
-        {!isUserLogin &&
-            <NavLink to='/react-menu-app/authorization/' className="header__link">Login</NavLink>
-        }
-        {isUserLogin &&
-            <NavLink to='/react-menu-app/authorization/' className="header__link">
+        </div>
+        <div className="header__right">
+            {isUserLogin &&
+                <NavLink to='/react-menu-app/dashboard/' className="header__link">
+                    <img 
+                        className="header__exit" 
+                        title="DASHBOARD"
+                        src={userIcon} 
+                        alt="dashboard">
+                    </img>
+                </NavLink>
+            }
+            <NavLink to='/react-menu-app/' className="header__link">Menu</NavLink>
+            <NavLink to='/react-menu-app/cart/' className="header__link">
                 <img 
-                    className="header__exit" 
-                    onClick={() => signOut()}
-                    title="EXIT"
-                    src={exitIcon} 
-                    alt="exit">
+                    className="header__cart" 
+                    src={cartIcon} 
+                    alt="cart" 
+                    title='CART'>
                 </img>
+                Total: {totalPrice} $
             </NavLink>
-        }
+            {!isUserLogin &&
+                <NavLink to='/react-menu-app/authorization/' className="header__link">Login</NavLink>
+            }
+            {isUserLogin &&
+                <NavLink to='/react-menu-app/authorization/' className="header__link">
+                    <img 
+                        className="header__exit" 
+                        onClick={() => signOut()}
+                        title="EXIT"
+                        src={exitIcon} 
+                        alt="exit">
+                    </img>
+                </NavLink>
+            }
+        </div>
     </header>
 );
 

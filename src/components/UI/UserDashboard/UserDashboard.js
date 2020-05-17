@@ -3,12 +3,14 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
+import './dashboard.scss';
+
 const UserDashboard = ({ user }) => {
   const { name, phone, email } = user;
 
   return (
     <div className="item__page">
-      <div className="menu__item item__block">
+      <div className="menu__item user__block">
         <h4 className="menu__title">You are welcome, {name}!</h4>
         <h6 className="menu__category">Your user data:</h6>
         <p className="menu__category">Phone number: <span>{phone}</span></p>

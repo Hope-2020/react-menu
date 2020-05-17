@@ -8,6 +8,7 @@ import { store, persistor } from './Redux/store';
 import App from './components/App';
 import ErrorBoundry from './components/Error-boundry';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.scss';
 
 ReactDOM.render(

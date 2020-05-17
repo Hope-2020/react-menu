@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ReactPaginate from 'react-paginate';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { pageChange} from 'Redux/actions/filter-menu';
 import { getVisibleMenu } from 'Redux/selectors';

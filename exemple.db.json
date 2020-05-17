@@ -168,7 +168,7 @@
   }, {
     "category": "salads",
     "description": "Mixing the avocado with the leafy greens and hearty veggies creates a creamy dressing in one easy step.",
-    "id": 16,
+    "id": 24,
     "price": 11,
     "title": "Sandra Lee's Stockpot Salad",
     "url": "https://media1.s-nbcnews.com/i/newscms/2018_42/1378147/sandra-lee-food-today-main-181018-02_28c1f1d7033c651ae8bd93a89f929201.jpg"
@@ -219,7 +219,7 @@
   {
     "category" : "pizza",
     "description" : "Beautiful napeoleon pizza with a crunchy crust with mouth melting mozzerela.",
-    "id": 8,
+    "id":31,
     "price": 14,
     "title": "Pizza Oregano",
     "url": "https://vogue.ua/media/cache/resolve/inline_990x/uploads/article-inline/7d3/89b/b29/5e84b2989b7d3.jpeg"
@@ -233,7 +233,7 @@
   }, {
     "category": "salads",
     "description": "Mixing the avocado with the leafy greens and hearty veggies creates a creamy dressing in one easy step.",
-    "id": 16,
+    "id": 33,
     "price": 11,
     "title": "Sandra Lee's Stockpot Salad",
     "url": "https://media1.s-nbcnews.com/i/newscms/2018_42/1378147/sandra-lee-food-today-main-181018-02_28c1f1d7033c651ae8bd93a89f929201.jpg"
@@ -283,7 +283,7 @@
   }, {
     "category" : "pizza",
     "description" : "Beautiful napeoleon pizza with a crunchy crust with mouth melting mozzerela.",
-    "id": 8,
+    "id": 40,
     "price": 14,
     "title": "Pizza Oregano",
     "url": "https://vogue.ua/media/cache/resolve/inline_990x/uploads/article-inline/7d3/89b/b29/5e84b2989b7d3.jpeg"

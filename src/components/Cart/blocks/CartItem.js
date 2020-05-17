@@ -6,7 +6,7 @@ import {
   deleteFromCart,
   addToCart,
   decreaseInCart
-} from 'Redux/actions/menu';
+} from 'Redux/actions/cart';
 
 const CartItem = ({
   item,
@@ -61,7 +61,12 @@ const mapDispatchToProps = {
 };
 
 CartItem.propTypes = {
-  item: PropTypes.object.isRequired,
+  item: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    url: PropTypes.string.isRequired,
+    quantity: PropTypes.number.isRequired
+}).isRequired,
   deleteFromCart: PropTypes.func.isRequired,
   addToCart: PropTypes.func.isRequired,
   decreaseInCart: PropTypes.func.isRequired
