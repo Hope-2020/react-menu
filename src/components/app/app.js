@@ -11,7 +11,7 @@ import {
     AuthPage,
     UserDashboardPage
 } from 'Pages';
-import PrivateRoute from "components/Private-route";
+import PrivateRoute from "components/PrivateRoute";
 import Header from 'components/Header';
 import Footer from 'components/UI/Footer';
 import ErrorMessage from 'components/UI/ErrorMessage';

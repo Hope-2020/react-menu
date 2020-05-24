@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -26,6 +26,16 @@ const MenuItem = ({
   const errorMessage = hasError && <ErrorMessage />;
   const loader = isLoading && <Spinner />;
 
+  const handlerAddItem = useCallback(() =>
+    addToCart(item),
+    [addToCart, item]
+  );
+
+  const handlerBack = useCallback(() =>
+    history.goBack(),
+    [history]
+  );
+
   useEffect(() => {
     !menuItems.length && menuLoaded();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -52,24 +62,25 @@ const MenuItem = ({
                 addEndListener={(node, done) => node.addEventListener("transitionend", done, false)}
                 classNames='fade'
               >
-              {inCart(cart, item.id)
-                ? <Link 
-                    to='/react-menu-app/cart/' 
-                    className="menu__btn menu__link">
+              {inCart(cart, item.id) ? (
+                <Link 
+                  to='/react-menu-app/cart/' 
+                  className="menu__btn menu__link">
                   CART
                 </Link>
-                : <button 
-                    className="menu__btn" 
-                    onClick={() => addToCart(item)}>
+              ) : (
+                <button 
+                  className="menu__btn" 
+                  onClick={handlerAddItem}>
                   ORDER
                 </button>
-              }
+              )}
               </CSSTransition>
             </SwitchTransition>
             <button 
-              onClick = {() => history.goBack()} 
+              onClick = {handlerBack} 
               className="menu__btn menu__link">
-            Back
+              Back
             </button>
           </div>
         </div>

@@ -14,7 +14,7 @@ import './header.scss';
 
 const Header = ({ totalPrice, isUserLogin }) => (
     <header className="header">
-        <div>
+        <div className="header__left">
             <NavLink to='/react-menu-app/'>
                 <img 
                     className="header__logo" 
@@ -46,7 +46,9 @@ const Header = ({ totalPrice, isUserLogin }) => (
                 Total: {totalPrice} $
             </NavLink>
             {!isUserLogin &&
-                <NavLink to='/react-menu-app/authorization/' className="header__link">Login</NavLink>
+                <NavLink to='/react-menu-app/authorization/' className="header__link">
+                    Login
+                </NavLink>
             }
             {isUserLogin &&
                 <NavLink to='/react-menu-app/authorization/' className="header__link">

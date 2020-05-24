@@ -18,31 +18,33 @@ const getUserData =  async (id) => {
   }
 };
 
-const checkUserIsLogin = () => async dispatch => {
+export const checkUserIsLogin = () => async dispatch => {
   dispatch({ type: REGISTRATION });
 
-  app.auth().onAuthStateChanged(user => {
-    if (user) {
-      getUserData(user.uid)
-        .then(user => {
-          dispatch({
-            type: PROVIDE_USER,
-            payload: user
-          });
-        })
-        .catch(error => {
-          dispatch({
-            type: IS_ERROR,
-            payload: error.message
-          });
-        })
-    } else {
-      dispatch({ type: USER_LOGOUT });
-    }
-  });
+  app
+    .auth()
+    .onAuthStateChanged(user => {
+      if (user) {
+        getUserData(user.uid)
+          .then(user => {
+            dispatch({
+              type: PROVIDE_USER,
+              payload: user
+            });
+          })
+          .catch(error => {
+            dispatch({
+              type: IS_ERROR,
+              payload: error.message
+            });
+          })
+      } else {
+        dispatch({ type: USER_LOGOUT });
+      }
+    });
 };
 
-const login = (value, history) => async dispatch => {
+export const login = (value, history) => async dispatch => {
   dispatch({ type: REGISTRATION });
 
   try {
@@ -73,7 +75,7 @@ const login = (value, history) => async dispatch => {
   }
 };
 
-const signUp = (value, history) => async dispatch=> {
+export const signUp = (value, history) => async dispatch=> {
   const { email, password, name, phone } = value;
 
   dispatch({ type: REGISTRATION });
@@ -115,13 +117,6 @@ const signUp = (value, history) => async dispatch=> {
   }
 };
 
-const signOut = () => {
+export const signOut = () => {
   app.auth().signOut();
-};
-
-export { 
-  checkUserIsLogin, 
-  login, 
-  signUp, 
-  signOut
 };

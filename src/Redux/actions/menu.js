@@ -9,14 +9,10 @@ export const menuLoaded = () => async dispatch => {
 
   try {
     const { data } = await apiCall('/menu.json');
-    const payload = data.map(item => ({
-      ...item,
-      inCart: false
-    }));
 
     dispatch({
       type: MENU_LOADED,
-      payload
+      payload: data
     });
   } catch (error) {
     dispatch({ type: HAS_ERROR });

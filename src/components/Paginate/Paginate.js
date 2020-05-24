@@ -45,15 +45,11 @@ const Paginate = ({
   );
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   menuItems: getVisibleMenu(state),
   pageSize: state.filter.pageSize,
   currentPage: state.filter.currentPage
 });
-
-const mapDispatchToProps = {
-  pageChange
-};
 
 Paginate.propTypes = {
   menuItems: PropTypes.arrayOf(
@@ -66,6 +62,6 @@ Paginate.propTypes = {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  { pageChange }
 )(Paginate);
 

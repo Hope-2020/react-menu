@@ -8,6 +8,10 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
 .fade-enter {
   opacity: 0;
   transform: translateX(-100%);

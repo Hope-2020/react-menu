@@ -8,7 +8,6 @@ import Spinner from 'components/UI/Spinner';
 import ErrorMessage from 'components/UI/ErrorMessage';
 import NothingFound from 'components/UI/NothingFound';
 import { menuLoaded } from 'Redux/actions/menu';
-import { addToCart } from 'Redux/actions/cart';
 import { inCart } from 'helpers/cart';
 import { getVisibleMenu } from 'Redux/selectors';
 
@@ -20,7 +19,6 @@ const MenuList = ({
   isLoading,
   hasError,
   menuLoaded,
-  addToCart,
   pageSize,
   currentPage
 }) => {
@@ -38,14 +36,15 @@ const MenuList = ({
     errorMessage || loader || nothingFound ||
       <ul className="menu__list">
         {visibleMenu.map(menuItem => {
-          const itemInCart = inCart(cart, menuItem.id);
+          const isItemInCart = inCart(cart, menuItem.id);
 
-          return <MenuListItem
-            key={menuItem.id}
-            menuItem={menuItem}
-            itemInCart={itemInCart}
-            onAddToCart={() => addToCart(menuItem)} />
-         })}
+          return (
+            <MenuListItem
+              key={menuItem.id}
+              item={menuItem}
+              isItemInCart={isItemInCart}
+            />
+          )})}
       </ul>
   );
 };
@@ -59,11 +58,6 @@ const mapStateToProps = (state) => ({
   currentPage: state.filter.currentPage
 });
 
-const mapDispatchToProps = {
-  menuLoaded, 
-  addToCart
-};
-
 MenuList.propTypes = {
   menuItems: PropTypes.arrayOf(
     PropTypes.object,
@@ -74,13 +68,12 @@ MenuList.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   hasError: PropTypes.bool.isRequired,
   menuLoaded: PropTypes.func.isRequired,
-  addToCart: PropTypes.func.isRequired,
   pageSize: PropTypes.number.isRequired,
   currentPage: PropTypes.number.isRequired
 };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  { menuLoaded }
 )(MenuList);
 

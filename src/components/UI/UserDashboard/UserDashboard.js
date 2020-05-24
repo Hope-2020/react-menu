@@ -7,6 +7,7 @@ import './dashboard.scss';
 
 const UserDashboard = ({ user }) => {
   const { name, phone, email } = user;
+  console.log(typeof phone)
 
   return (
     <div className="item__page">
@@ -37,7 +38,11 @@ const mapStateToProps = ({ auth }) => ({
 });
 
 UserDashboard.propTypes = {
-  user: PropTypes.object.isRequired
+  user: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    phone: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+}).isRequired
 };
 
 export default connect(

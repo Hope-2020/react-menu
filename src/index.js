@@ -6,7 +6,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { store, persistor } from './Redux/store';
 
 import App from './components/App';
-import ErrorBoundry from './components/Error-boundry';
+import ErrorBoundry from './components/ErrorBoundry';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.scss';

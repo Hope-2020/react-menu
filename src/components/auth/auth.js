@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
@@ -17,6 +17,11 @@ const Auth = ({
 }) => {
   const [showSignUp, setShowSignUp] = useState(false);
 
+  const handlerChangeBlock = useCallback(() => 
+    setShowSignUp(!showSignUp),
+    [setShowSignUp, showSignUp]
+  );
+
   const getClassLink = () => {
     return cn('user_options-forms', {'bounceLeft': showSignUp, 'bounceRight': !showSignUp});
   }
@@ -32,7 +37,7 @@ const Auth = ({
           <div className="user_options-unregistered">
             {loader || successMessage ||
               <>
-                {showError||
+                {showError ||
                   <>
                     <h2 className="user_unregistered-title">Don't have an account?</h2>
                     <p className="user_unregistered-text">Please, click the button below and go through the short registration process.</p>
@@ -40,7 +45,7 @@ const Auth = ({
                 }
                 <button 
                   className="user_unregistered-signup" 
-                  onClick={() => setShowSignUp(!showSignUp)}
+                  onClick={handlerChangeBlock}
                 >
                   Sign up
                 </button>
@@ -59,7 +64,7 @@ const Auth = ({
               }
                 <button 
                   className="user_registered-login" 
-                  onClick={() => setShowSignUp(!showSignUp)}
+                  onClick={handlerChangeBlock}
                 >
                   Login
                 </button>

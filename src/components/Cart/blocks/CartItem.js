@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -16,6 +16,21 @@ const CartItem = ({
 }) => {
   const { title, price, url, quantity } = item;
 
+  const handlerAddItem = useCallback(() =>
+    addToCart(item),
+    [addToCart, item]
+  );
+
+  const handlerDeleteItem = useCallback(() =>
+    deleteFromCart(item),
+    [deleteFromCart, item]
+  );
+
+  const handlerDecreaseItem = useCallback(() =>
+    decreaseInCart(item),
+    [decreaseInCart, item]
+  );
+
   return (
     <div className="cart__item">
       <img src={url} className="cart__item-img" alt="Cesar salad"></img>
@@ -30,13 +45,13 @@ const CartItem = ({
         <div className="cart__buttons">
           <button
             className="cart__btn"
-            onClick={() => decreaseInCart(item)}
+            onClick={handlerDecreaseItem}
             disabled={quantity <= 1 && true}>
             -
           </button>
           <button
             className="cart__btn"
-            onClick={() => addToCart(item)}>
+            onClick={handlerAddItem}>
             +
           </button>
         </div>
@@ -47,7 +62,7 @@ const CartItem = ({
       </div>
       <div 
         className="cart__close" 
-        onClick={() => deleteFromCart(item)}>
+        onClick={handlerDeleteItem}>
         &times;
       </div>
     </div>

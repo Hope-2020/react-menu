@@ -46,14 +46,14 @@ const SearchBar = ({
             &uArr;
           </button>
           ) : (
-          <button 
-            title="Sort by price"
-            className="sort"
-            value="down"
-            onClick={({ target }) => handleSortByPrice(target.value)}
-          >
-            &dArr;
-          </button>
+            <button 
+              title="Sort by price"
+              className="sort"
+              value="down"
+              onClick={({ target }) => handleSortByPrice(target.value)}
+            >
+              &dArr;
+            </button>
           )}
       </div>
     </div>

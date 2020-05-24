@@ -1,19 +1,26 @@
-import React, { useState, memo } from 'react';
+import React, { useState, useCallback, memo } from 'react';
 import { Link } from 'react-router-dom';
 import ReactCardFlip from "react-card-flip";
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 
+import { addToCart } from 'Redux/actions/cart';
 import './menu-list-item.scss';
 
-const MenuListItem = memo(
-    ({ menuItem, onAddToCart, itemInCart }) => {
-
-    const { title, price, url, category, id, description } = menuItem;
+const MenuListItem = memo(({ item, isItemInCart }) => {
+    const { title, price, url, category, id, description } = item;
     const [isFlipped, changeFlipped] = useState(false);
+    const dispatch = useDispatch();
 
-    const onClickFlip = () => {
-        changeFlipped(!isFlipped);
-    };
+    const handlerChangeFlip = useCallback(() =>
+        changeFlipped(!isFlipped),
+        [changeFlipped, isFlipped]
+    );
+
+    const handlerAddItem = useCallback(() =>
+        dispatch(addToCart(item)),
+        [dispatch, item]
+    );
 
     return (
         <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
@@ -24,28 +31,29 @@ const MenuListItem = memo(
                     src={url} 
                     alt={title}
                     title="click me"
-                    onClick={onClickFlip}>
+                    onClick={handlerChangeFlip}>
                 </img>
                 <div className="menu__category">Category: <span>{category}</span></div>
                 <div className="menu__price">Price: <span>{price}$</span></div>
                 <span className={`menu__category_img ${category}`}></span>
                 <div className="menu__buttons">
-                    {itemInCart
-                        ? <Link 
+                    {isItemInCart ? (
+                        <Link
                             to='/react-menu-app/cart/' 
                             className="menu__btn menu__link">
-                        CART
+                            CART
                         </Link>
-                        : <button 
+                    ) : ( 
+                        <button 
                             className="menu__btn" 
-                            onClick={() => onAddToCart()}>
-                        ORDER
+                            onClick={handlerAddItem}>
+                            ORDER
                         </button>
-                    }
+                    )}
                     <Link 
                         to={`/react-menu-app/menu/${id}`} 
                         className="menu__link">
-                    DESCRIPTION
+                        DESCRIPTION
                     </Link>
                 </div>
             </li>
@@ -53,7 +61,7 @@ const MenuListItem = memo(
                 <div className="menu__title">{title}</div>
                 <div 
                     className="menu__description" 
-                    onClick={onClickFlip}
+                    onClick={handlerChangeFlip}
                 >
                     {description}
                 </div>
@@ -61,28 +69,29 @@ const MenuListItem = memo(
                 <div className="menu__price">Price: <span>{price}$</span></div>
                 <span className={`menu__category_img ${category}`}></span>
                 <div className="menu__buttons">
-                    {itemInCart
-                        ? <Link 
+                    {isItemInCart ? (
+                        <Link 
                             to='/react-menu-app/cart/' 
                             className="menu__btn menu__link">
-                        CART
+                            CART
                         </Link>
-                        : <button 
+                    ) : (
+                        <button 
                             className="menu__btn" 
-                            onClick={() => onAddToCart()}>
-                        ORDER
+                            onClick={handlerAddItem}>
+                            ORDER
                         </button>
-                    }
+                    )}
                 </div>
             </li>
         </ReactCardFlip>
     ); 
 }, 
-    (prev, next) => prev.itemInCart === next.itemInCart
+    (prev, next) => prev.isItemInCart === next.isItemInCart
 );
 
 MenuListItem.propTypes = {
-    menuItem: PropTypes.shape({
+    item: PropTypes.shape({
         title: PropTypes.string.isRequired,
         price: PropTypes.number.isRequired,
         url: PropTypes.string.isRequired,
@@ -90,8 +99,7 @@ MenuListItem.propTypes = {
         id: PropTypes.number.isRequired,
         description: PropTypes.string.isRequired
     }).isRequired,
-    onAddToCart: PropTypes.func.isRequired,
-    itemInCart: PropTypes.bool.isRequired,
+    isItemInCart: PropTypes.bool.isRequired
 };
 
 export default MenuListItem;
