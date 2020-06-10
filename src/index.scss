@@ -8,8 +8,16 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+a,
 a:hover {
   text-decoration: none;
+}
+
+.main__page {
+  position: relative;
+  max-width: 1720px;
+	margin: auto;
+	padding: 0 50px;
 }
 
 .fade-enter {
@@ -35,8 +43,4 @@ a:hover {
 .fade-enter-active,
 .fade-exit-active {
   transition: opacity 500ms, transform 500ms;
-}
-
-.main__page {
-  position: relative;
 }

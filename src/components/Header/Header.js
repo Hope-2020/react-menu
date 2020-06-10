@@ -14,6 +14,7 @@ import './header.scss';
 
 const Header = ({ totalPrice, isUserLogin }) => (
     <header className="header">
+    <div className="header__wrap">
         <div className="header__left">
             <NavLink to='/react-menu-app/'>
                 <img 
@@ -61,6 +62,7 @@ const Header = ({ totalPrice, isUserLogin }) => (
                     </img>
                 </NavLink>
             }
+        </div>
         </div>
     </header>
 );
