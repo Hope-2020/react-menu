@@ -1,7 +1,5 @@
 React restaurant menu app
 
-- [DEMO-LINK](https://mikhail-88.github.io/react-menu-app/)
-
 Project, based on knowlages about React/Redux JS technologies.
 
 Used:
